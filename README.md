@@ -8,4 +8,4 @@ $ npm install -g @angular/cli
 commands:
 $ cd angular/winmas/
 ($ npm install)
-$ npm start
+$ npm start (or ng serve --open)
