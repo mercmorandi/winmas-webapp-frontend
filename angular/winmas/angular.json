@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "winmas"
+  "defaultProject": "winmas",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "sass"
+    }
+  }
 }
