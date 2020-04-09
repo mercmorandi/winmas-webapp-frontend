@@ -11,7 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,18 +18,19 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Routes, RouterModule } from '@angular/router'
 
 import { ChartsModule } from 'ng2-charts';
-import { ScatterComponent } from './scatter/scatter.component';
+import { ScatterChartComponent } from './scatter-chart/scatter-chart.component';
+import { ScatterDashboardComponent } from './scatter-dashboard/scatter-dashboard.component';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: '', redirectTo:'/dashboard', pathMatch: 'full' }
+  { path: 'scatter-dashboard', component: ScatterDashboardComponent },
+  { path: '', redirectTo:'/scatter-dashboard', pathMatch: 'full' }
 ]
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    DashboardComponent,
-    ScatterComponent
+    ScatterDashboardComponent,
+    ScatterChartComponent
   ],
   imports: [
     BrowserModule,
