@@ -15,9 +15,12 @@ https://www.chartjs.org/
 https://valor-software.com/ng2-charts/
 scatter char:
 https://valor-software.com/ng2-charts/#/ScatterChart
+timepicker:
+https://agranom.github.io/ngx-material-timepicker/
 
-npm install chart.js
-npm install ng2-charts
+npm install --save chart.js
+npm install --save ng2-charts
+npm install --save ngx-material-timepicker
 
 darktheme:
 https://material.angular.io/guide/theming-your-components

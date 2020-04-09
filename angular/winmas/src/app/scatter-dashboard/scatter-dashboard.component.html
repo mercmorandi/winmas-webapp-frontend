@@ -17,7 +17,8 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <!--<div>Card Content Here</div>-->
-          <app-scatter-chart></app-scatter-chart>
+          <app-scatter-chart *ngIf="card.chart"></app-scatter-chart>
+          <app-scatter-config *ngIf="card.config"></app-scatter-config>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

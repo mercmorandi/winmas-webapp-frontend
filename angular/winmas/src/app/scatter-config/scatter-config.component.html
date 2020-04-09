@@ -1,0 +1,31 @@
+<form [formGroup]="configForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="scatter-config-card">
+    <mat-card-header>
+      <mat-card-title>Time Lapse Devices</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-radio-group formControlName="mode">
+            <mat-radio-button value="manual-mode">Manual Mode</mat-radio-button>
+            <mat-radio-button value="auto-mode">Auto Mode</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

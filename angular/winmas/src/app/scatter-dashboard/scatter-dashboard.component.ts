@@ -13,18 +13,16 @@ export class ScatterDashboardComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
+          { title: 'Position Monitoring', cols: 1, rows: 1, chart: true },
+          { title: 'Position Configurations', cols: 1, rows: 1, config: true },
+          { title: 'List Positions', cols: 1, rows: 1, list: true },
         ];
       }
 
       return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
+        { title: 'Position Monitoring', cols: 2, rows: 2, chart: true },
+        { title: 'Position Configurations', cols: 1, rows: 1, config: true },
+        { title: 'List Positions', cols: 1, rows: 2, list: true },
       ];
     })
   );

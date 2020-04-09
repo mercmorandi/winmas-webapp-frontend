@@ -20,6 +20,12 @@ import { Routes, RouterModule } from '@angular/router'
 import { ChartsModule } from 'ng2-charts';
 import { ScatterChartComponent } from './scatter-chart/scatter-chart.component';
 import { ScatterDashboardComponent } from './scatter-dashboard/scatter-dashboard.component';
+import { ScatterConfigComponent } from './scatter-config/scatter-config.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -30,7 +36,8 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     ScatterDashboardComponent,
-    ScatterChartComponent
+    ScatterChartComponent,
+    ScatterConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +53,15 @@ const appRoutes: Routes = [
     MatCardModule,
     MatMenuModule,
     RouterModule.forRoot(appRoutes),
-    ChartsModule
+    ChartsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatDatepickerModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
