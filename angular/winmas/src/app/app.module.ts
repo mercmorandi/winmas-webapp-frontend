@@ -19,7 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Routes, RouterModule } from '@angular/router'
 
 import { ChartsModule } from 'ng2-charts';
-import { ChartComponent } from './chart/chart.component';
+import { ScatterComponent } from './scatter/scatter.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    ChartComponent
+    ScatterComponent
   ],
   imports: [
     BrowserModule,

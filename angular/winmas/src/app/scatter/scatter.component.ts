@@ -3,11 +3,11 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  selector: 'app-scatter',
+  templateUrl: './scatter.component.html',
+  styleUrls: ['./scatter.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ScatterComponent implements OnInit {
 
   public scatterChartOptions: ChartOptions = {
     responsive: true,
@@ -22,7 +22,7 @@ export class ChartComponent implements OnInit {
         { x: 2, y: 3 },
         { x: 3, y: -2 },
         { x: 4, y: 4 },
-        { x: 5, y: -3, r: 20 },
+        { x: 5, y: -3 },
       ],
       label: 'Series A',
       pointRadius: 10,
