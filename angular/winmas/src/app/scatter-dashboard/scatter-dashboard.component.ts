@@ -14,8 +14,8 @@ export class ScatterDashboardComponent {
       if (matches) {
         return [
           { title: 'Position Monitoring', cols: 1, rows: 1, chart: true },
+          { title: 'Table Positions', cols: 1, rows: 2, table: true },
           { title: 'Position Configurations', cols: 1, rows: 1, config: true },
-          { title: 'Table Positions', cols: 1, rows: 1, table: true },
         ];
       }
 
