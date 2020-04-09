@@ -18,6 +18,9 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { Routes, RouterModule } from '@angular/router'
 
+import { ChartsModule } from 'ng2-charts';
+import { ChartComponent } from './chart/chart.component';
+
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo:'/dashboard', pathMatch: 'full' }
@@ -26,7 +29,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ const appRoutes: Routes = [
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
