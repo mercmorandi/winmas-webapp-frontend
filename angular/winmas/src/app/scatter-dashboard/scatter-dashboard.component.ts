@@ -15,14 +15,14 @@ export class ScatterDashboardComponent {
         return [
           { title: 'Position Monitoring', cols: 1, rows: 1, chart: true },
           { title: 'Position Configurations', cols: 1, rows: 1, config: true },
-          { title: 'List Positions', cols: 1, rows: 1, list: true },
+          { title: 'Table Positions', cols: 1, rows: 1, table: true },
         ];
       }
 
       return [
         { title: 'Position Monitoring', cols: 2, rows: 2, chart: true },
         { title: 'Position Configurations', cols: 1, rows: 1, config: true },
-        { title: 'List Positions', cols: 1, rows: 2, list: true },
+        { title: 'Table Positions', cols: 1, rows: 2, table: true },
       ];
     })
   );

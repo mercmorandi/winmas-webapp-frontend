@@ -26,6 +26,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ScatterTableComponent } from './scatter-table/scatter-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -37,7 +41,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     ScatterDashboardComponent,
     ScatterChartComponent,
-    ScatterConfigComponent
+    ScatterConfigComponent,
+    ScatterTableComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,10 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [MatDatepickerModule,
   ],
