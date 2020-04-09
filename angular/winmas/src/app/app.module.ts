@@ -30,6 +30,7 @@ import { ScatterTableComponent } from './scatter-table/scatter-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [MatDatepickerModule,
   ],
