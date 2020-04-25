@@ -31,9 +31,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { LineDashboardComponent } from './line-dashboard/line-dashboard.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
+  { path: 'line-dashboard', component: LineDashboardComponent },
   { path: '', redirectTo:'/scatter-dashboard', pathMatch: 'full' }
 ]
 @NgModule({
@@ -43,7 +46,9 @@ const appRoutes: Routes = [
     ScatterDashboardComponent,
     ScatterChartComponent,
     ScatterConfigComponent,
-    ScatterTableComponent
+    ScatterTableComponent,
+    LineDashboardComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

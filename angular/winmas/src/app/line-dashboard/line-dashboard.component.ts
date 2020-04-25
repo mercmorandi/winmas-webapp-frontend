@@ -13,18 +13,16 @@ export class LineDashboardComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
+          { title: 'Long-Term Statistics', cols: 1, rows: 1, chart: true },
+          { title: 'Table Statistics', cols: 1, rows: 1 },
+          { title: 'Statistic Configurations', cols: 1, rows: 1 },
         ];
       }
 
       return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
+        { title: 'Long-Term Statistics', cols: 2, rows: 2, chart: true },
+        { title: 'Table Statistics', cols: 1, rows: 1 },
+        { title: 'Statistic Configurations', cols: 1, rows: 2 },
       ];
     })
   );

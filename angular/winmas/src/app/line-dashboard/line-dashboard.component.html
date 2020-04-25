@@ -16,7 +16,10 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
+          <!--<div>Card Content Here</div>-->
+          <app-line-chart *ngIf="card.chart"></app-line-chart>
+          <!--<app-line-config *ngIf="card.config"></app-line-config>-->
+          <!--<app-line-table *ngIf="card.table"></app-line-table>-->
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
