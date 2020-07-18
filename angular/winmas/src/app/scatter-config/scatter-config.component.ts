@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
+import { MessageService } from '../message.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-scatter-config',
@@ -30,9 +32,13 @@ export class ScatterConfigComponent {
     mode: ['manual-mode', Validators.required]
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private message: MessageService) {}
 
   onSubmit() {
-    alert('Thanks!');
+    this.message.success('Thanks!');
+  }
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.message.success(`${type}: ${event.value}`);
   }
 }

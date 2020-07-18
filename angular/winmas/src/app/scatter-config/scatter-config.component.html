@@ -2,8 +2,15 @@
 
       <div class="row">
         <div class="col">
-
           <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Initial Date</mat-label>
+              <input matInput [matDatepicker]="picker"
+                    (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
             <input placeholder="Initial Minute" aria-label="Initial Minute"
             [ngxTimepicker]="darkPicker" readonly>
             <ngx-material-timepicker #darkPicker [theme]="darkTheme"></ngx-material-timepicker>
@@ -12,8 +19,15 @@
       </div>
       <div class="row">
         <div class="col">
-
           <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Final Date</mat-label>
+              <input matInput [matDatepicker]="picker"
+                    (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
             <input placeholder="Final Minute" aria-label="Final Minute"
             [ngxTimepicker]="darkPicker" readonly>
             <ngx-material-timepicker #darkPicker [theme]="darkTheme"></ngx-material-timepicker>

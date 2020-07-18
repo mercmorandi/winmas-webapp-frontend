@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
+enum Content {
+  chart,
+  config,
+  table,
+}
+
 @Component({
   selector: 'app-line-dashboard',
   templateUrl: './line-dashboard.component.html',
@@ -28,4 +34,8 @@ export class LineDashboardComponent {
   );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  public visualize(choise: Content): void {
+
+  }
 }

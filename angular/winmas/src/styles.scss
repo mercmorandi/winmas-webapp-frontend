@@ -40,3 +40,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 input { color: whitesmoke; background-color: darkgray;}
+
+
+.snack-success{
+  background: rgb(18,36,0);
+  background: linear-gradient(45deg, rgba(18,36,0,1) 0%, rgba(46,121,9,0.9822303921568627) 0%, rgba(0,255,49,0.5508578431372548) 100%);
+}
+
+.snack-error{
+  background: rgb(18,36,0);
+  color: white;
+  background: linear-gradient(45deg, rgba(18,36,0,1) 0%, rgba(121,17,9,0.9822303921568627) 0%, rgba(255,70,0,0.5508578431372548) 100%);
+}
