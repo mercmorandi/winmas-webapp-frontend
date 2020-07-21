@@ -25,7 +25,7 @@ import { ScatterConfigComponent } from './scatter-config/scatter-config.componen
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ScatterTableComponent } from './scatter-table/scatter-table.component';
@@ -35,6 +35,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { LineDashboardComponent } from './line-dashboard/line-dashboard.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { LineConfigComponent } from './line-config/line-config.component';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { HttpClientModule } from '@angular/common/http';
+
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -50,12 +54,21 @@ const appRoutes: Routes = [
     ScatterConfigComponent,
     ScatterTableComponent,
     LineDashboardComponent,
-    LineChartComponent
+    LineChartComponent,
+    LineConfigComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    NgxMatTimepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    NgxMatDatetimePickerModule,
+    AppRoutingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -67,20 +80,17 @@ const appRoutes: Routes = [
     MatMenuModule,
     RouterModule.forRoot(appRoutes),
     ChartsModule,
-    MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
-    NgxMaterialTimepickerModule
-  ],
-  providers: [MatDatepickerModule,
-  ],
+    NgxMaterialTimepickerModule,
+    NgxMatNativeDateModule
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

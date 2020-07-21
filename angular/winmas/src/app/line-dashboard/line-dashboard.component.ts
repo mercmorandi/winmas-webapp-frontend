@@ -21,14 +21,14 @@ export class LineDashboardComponent {
         return [
           { title: 'Long-Term Statistics', cols: 1, rows: 1, chart: true },
           { title: 'Table Statistics', cols: 1, rows: 1 },
-          { title: 'Statistic Configurations', cols: 1, rows: 1 },
+          { title: 'Statistic Configurations', cols: 1, rows: 1, config: true },
         ];
       }
 
       return [
         { title: 'Long-Term Statistics', cols: 2, rows: 2, chart: true },
         { title: 'Table Statistics', cols: 1, rows: 1 },
-        { title: 'Statistic Configurations', cols: 1, rows: 2 },
+        { title: 'Statistic Configurations', cols: 1, rows: 1, config: true },
       ];
     })
   );

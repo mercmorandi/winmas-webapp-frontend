@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col">
+    <div>
+      <mat-form-field>
+        <input (dateInput)="setDate($event.value)" matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="formGroup"
+           >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker >
+        </ngx-mat-datetime-picker>
+     </mat-form-field>
+      <button mat-raised-button (click)="submitDate()" color="primary" type="submit">Submit</button>
+    </div>
+  </div>
+</div>

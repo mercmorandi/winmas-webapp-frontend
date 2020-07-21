@@ -26,7 +26,7 @@ export class ScatterConfigComponent {
 };
   //date = new FormControl(new Date());
   date = new Date();
-  configForm = this.fb.group({
+  configScatterForm = this.fb.group({
     firstName: [null, Validators.required],
     startDate: [new Date(), Validators.required],
     mode: ['manual-mode', Validators.required]
