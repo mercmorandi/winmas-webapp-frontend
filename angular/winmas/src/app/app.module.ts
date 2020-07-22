@@ -38,6 +38,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { LineConfigComponent } from './line-config/line-config.component';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { HttpClientModule } from '@angular/common/http';
+import { LineTableComponent } from './line-table/line-table.component';
 
 
 const appRoutes: Routes = [
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     ScatterTableComponent,
     LineDashboardComponent,
     LineChartComponent,
-    LineConfigComponent
+    LineConfigComponent,
+    LineTableComponent
   ],
   imports: [
     BrowserModule,

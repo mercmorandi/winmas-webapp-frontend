@@ -2,8 +2,7 @@
   <div class="col">
     <div>
       <mat-form-field>
-        <input (dateInput)="setDate($event.value)" matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="formGroup"
-           >
+        <input (dateInput)="setDate($event.value)" matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker >
         </ngx-mat-datetime-picker>

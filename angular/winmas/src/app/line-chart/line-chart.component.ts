@@ -2,6 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import { Observable } from 'rxjs';
+import { lineStatVM } from '../models/line-stat-vm';
+import { LineService } from '../line.service';
+import { MessageService } from '../message.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-line-chart',
@@ -87,7 +92,8 @@ export class LineChartComponent implements OnInit {
   public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-  constructor() { }
+  constructor(private lineService: LineService,
+              private messageService: MessageService) { }
 
   ngOnInit() {
   }
@@ -136,5 +142,18 @@ export class LineChartComponent implements OnInit {
   public changeLabel() {
     this.lineChartLabels[2] = ['1st Line', '2nd Line'];
     // this.chart.update();
+  }
+
+  lineStats$: Observable<lineStatVM[]>;
+
+  getStats(date: Number) {
+    this.lineStats$ = this.lineService.getStats(date).pipe(tap((data) => {
+      if (!data) {
+        this.messageService.error('No statistics for ' + date);
+      }
+    }));
+    //test
+    this.lineStats$.subscribe();
+    //this.lineStats$.unsubscribe();
   }
 }

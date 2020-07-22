@@ -1,6 +1,6 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-list cols="3" rowHeight="350px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -19,7 +19,7 @@
           <!--<div>Card Content Here</div>-->
           <app-line-chart *ngIf="card.chart"></app-line-chart>
           <app-line-config *ngIf="card.config"></app-line-config>
-          <!--<app-line-table *ngIf="card.table"></app-line-table>-->
+          <app-line-table *ngIf="card.table"></app-line-table>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

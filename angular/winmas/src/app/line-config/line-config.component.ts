@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { MessageService } from '../message.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Moment } from 'moment';
+import { LineService } from '../line.service';
 
 @Component({
   selector: 'app-line-config',
@@ -12,7 +13,7 @@ import { Moment } from 'moment';
 })
 export class LineConfigComponent {
 
-  public date: Number;
+  public date: number;
   public disabled = false;
   public showSpinners = true;
   public showSeconds = false;
@@ -26,7 +27,8 @@ export class LineConfigComponent {
 
   public dateControl = new FormControl(this.date);
 
-  constructor(private message: MessageService) {}
+  constructor(private message: MessageService,
+              private lineService: LineService) {}
 
   ngOnInit() {
     //this.message.success(this.date + this.dateControl.value);
@@ -34,10 +36,11 @@ export class LineConfigComponent {
 
   setDate(selectedDate: Date) {
     this.date = Math.trunc(selectedDate.getTime()/1000);
-    this.message.success(this.date);
+    this.submitDate();
   }
 
   submitDate(){
-    this.message.success(this.date);
+    this.message.success("Waiting Data for:\n" + new Date(this.date*1000) + "\n(" + this.date + ")");
+    this.lineService.getStats(this.date);
   }
 }

@@ -10,27 +10,14 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./scatter-config.component.css']
 })
 export class ScatterConfigComponent {
-  darkTheme = {
-    container: {
-        bodyBackgroundColor: '#424242',
-        buttonColor: '#fff'
-    },
-    dial: {
-        dialBackgroundColor: '#555',
-    },
-    clockFace: {
-        clockFaceBackgroundColor: '#555',
-        clockHandColor: '#9fbd90',
-        clockFaceTimeInactiveColor: '#fff'
-    }
-};
   //date = new FormControl(new Date());
-  date = new Date();
   configScatterForm = this.fb.group({
     firstName: [null, Validators.required],
     startDate: [new Date(), Validators.required],
     mode: ['manual-mode', Validators.required]
   });
+
+  private date: number;
 
   constructor(private fb: FormBuilder, private message: MessageService) {}
 
@@ -40,5 +27,10 @@ export class ScatterConfigComponent {
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     this.message.success(`${type}: ${event.value}`);
+  }
+
+  setDate(selectedDate: Date) {
+    this.date = Math.trunc(selectedDate.getTime()/1000);
+    this.message.success("Selected :\n" + new Date(this.date*1000) + "\n(" + this.date + ")");
   }
 }

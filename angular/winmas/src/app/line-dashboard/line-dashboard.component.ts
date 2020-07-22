@@ -19,16 +19,16 @@ export class LineDashboardComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Long-Term Statistics', cols: 1, rows: 1, chart: true },
-          { title: 'Table Statistics', cols: 1, rows: 1 },
-          { title: 'Statistic Configurations', cols: 1, rows: 1, config: true },
+          { title: 'Long-Term Statistics', cols: 2, rows: 2, chart: true },
+          { title: 'Statistics Configurations', cols: 2, rows: 2, config: true },
+          { title: 'Table Statistics', cols: 2, rows: 2, table: true },
         ];
       }
 
       return [
         { title: 'Long-Term Statistics', cols: 2, rows: 2, chart: true },
-        { title: 'Table Statistics', cols: 1, rows: 1 },
-        { title: 'Statistic Configurations', cols: 1, rows: 1, config: true },
+        { title: 'Statistics Configurations', cols: 1, rows: 1, config: true },
+        { title: 'Table Statistics', cols: 1, rows: 2, table: true },
       ];
     })
   );
