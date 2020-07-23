@@ -1,15 +1,13 @@
-<div *ngFor="let stat of lineStats$ | async">
-  <div>{{stat}}</div>
+<div *ngFor="let stat of stats">
+  <div>{{stat.minute}} - {{stat.nDevices}}</div>
 </div>
-<div class="mat-elevation-z8">
+<!--<div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Min</th>
       <td mat-cell *matCellDef="let row">{{row.id}}</td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Devices</th>
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
@@ -26,3 +24,4 @@
       [pageSizeOptions]="[25, 50, 100, 250]">
   </mat-paginator>
 </div>
+-->

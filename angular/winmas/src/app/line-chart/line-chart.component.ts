@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
@@ -14,13 +14,12 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
+  @Input() stats: lineStatVM[];
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
+    { data: [], label: 'Number of Devices', yAxisID: 'y-axis-0' }
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -29,10 +28,6 @@ export class LineChartComponent implements OnInit {
       yAxes: [
         {
           id: 'y-axis-0',
-          position: 'left',
-        },
-        {
-          id: 'y-axis-1',
           position: 'right',
           gridLines: {
             color: 'rgba(255,0,0,0.3)',
@@ -44,40 +39,9 @@ export class LineChartComponent implements OnInit {
       ]
     },
     annotation: {
-      annotations: [
-        {
-          type: 'line',
-          mode: 'vertical',
-          scaleID: 'x-axis-0',
-          value: 'March',
-          borderColor: 'orange',
-          borderWidth: 2,
-          label: {
-            enabled: true,
-            fontColor: 'orange',
-            content: 'LineAnno'
-          }
-        },
-      ],
-    },
+    }
   };
   public lineChartColors: Color[] = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
     { // red
       backgroundColor: 'rgba(255,0,0,0.3)',
       borderColor: 'red',
@@ -92,19 +56,37 @@ export class LineChartComponent implements OnInit {
   public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-  constructor(private lineService: LineService,
-              private messageService: MessageService) { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit() {
   }
 
+  public pushOne() {
+    let data_labels: Label[] = this.lineChartLabels as Label[];
+
+    this.lineChartData.forEach((x, i) => {
+      console.log(x, i);
+      let data_values: number[] = x.data as number[];
+      this.stats.forEach((value:lineStatVM)=>{
+        //console.log(value);
+        data_values.push(value.nDevices);
+        data_labels.push(value.minute.toString());
+      });
+      //x.data = data_values;
+      console.log(x.data);
+    });
+    this.lineChartLabels.push();
+  }
+
+
+
   public randomize(): void {
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        this.lineChartData[i].data[j] = this.generateNumber(i);
-      }
-    }
-    this.chart.update();
+    // for (let i = 0; i < this.lineChartData.length; i++) {
+    //   for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+    //     this.lineChartData[i].data[j] = this.generateNumber(i);
+    //   }
+    // }
+    // this.chart.update();
   }
 
   private generateNumber(i: number) {
@@ -125,15 +107,6 @@ export class LineChartComponent implements OnInit {
     this.chart.hideDataset(1, !isHidden);
   }
 
-  public pushOne() {
-    this.lineChartData.forEach((x, i) => {
-      const num = this.generateNumber(i);
-      const data: number[] = x.data as number[];
-      data.push(num);
-    });
-    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-  }
-
   public changeColor() {
     this.lineChartColors[2].borderColor = 'green';
     this.lineChartColors[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
@@ -144,16 +117,5 @@ export class LineChartComponent implements OnInit {
     // this.chart.update();
   }
 
-  lineStats$: Observable<lineStatVM[]>;
-
-  getStats(date: Number) {
-    this.lineStats$ = this.lineService.getStats(date).pipe(tap((data) => {
-      if (!data) {
-        this.messageService.error('No statistics for ' + date);
-      }
-    }));
-    //test
-    this.lineStats$.subscribe();
-    //this.lineStats$.unsubscribe();
-  }
 }
+

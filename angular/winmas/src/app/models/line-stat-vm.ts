@@ -1,4 +1,4 @@
 export class lineStatVM {
-  nDevices: Number;
+  nDevices: number;
   minute: String;
 }

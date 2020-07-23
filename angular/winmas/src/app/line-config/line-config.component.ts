@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { MessageService } from '../message.service';
@@ -12,35 +12,17 @@ import { LineService } from '../line.service';
   styleUrls: ['./line-config.component.css']
 })
 export class LineConfigComponent {
+  @Output() date = new EventEmitter<number>();
 
-  public date: number;
-  public disabled = false;
-  public showSpinners = true;
-  public showSeconds = false;
-  public touchUi = false;
-  public enableMeridian = false;
-  public minDate: Moment;
-  public maxDate: Moment;
-  public stepHour = 1;
-  public stepMinute = 1;
-  public stepSecond = 1;
-
-  public dateControl = new FormControl(this.date);
-
-  constructor(private message: MessageService,
-              private lineService: LineService) {}
+  constructor(private message: MessageService) {}
 
   ngOnInit() {
     //this.message.success(this.date + this.dateControl.value);
   }
 
   setDate(selectedDate: Date) {
-    this.date = Math.trunc(selectedDate.getTime()/1000);
-    this.submitDate();
-  }
-
-  submitDate(){
-    this.message.success("Waiting Data for:\n" + new Date(this.date*1000) + "\n(" + this.date + ")");
-    this.lineService.getStats(this.date);
+    let date = Math.trunc(selectedDate.getTime()/1000);
+    console.log("send:", date, selectedDate)
+    this.date.emit(date);
   }
 }

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { LineService } from '../line.service';
+import { Observable, of } from 'rxjs';
+import { lineStatVM } from '../models/line-stat-vm';
 
 enum Content {
   chart,
@@ -33,9 +36,17 @@ export class LineDashboardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  lineStats$: Observable<lineStatVM[]> = of([]);
 
-  public visualize(choise: Content): void {
+
+  constructor(private breakpointObserver: BreakpointObserver, private lineService: LineService) {}
+
+  public setDate(date :number) {
+    console.log("set date dashboard", date);
+
+    this.lineStats$ = this.lineService.getStats(date).pipe(
+      tap((data: lineStatVM[])=>console.log("dashboard received: ",data))
+    );
 
   }
 }
