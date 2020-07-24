@@ -17,7 +17,8 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <!--<div>Card Content Here</div>-->
-          <app-line-chart [stats]="lineStats$ | async" *ngIf="card.chart"></app-line-chart>
+          <app-line-chart [stats$]="lineStats$" *ngIf="card.chart"></app-line-chart>
+          <!-- <app-line-chart [date]="date" *ngIf="card.chart"></app-line-chart> -->
           <app-line-config (date)="setDate($event)" *ngIf="card.config"></app-line-config>
           <app-line-table [stats]="lineStats$ | async" *ngIf="card.table"></app-line-table>
         </mat-card-content>

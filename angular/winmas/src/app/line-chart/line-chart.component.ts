@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, AfterViewInit, OnChanges, OnDestroy } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { lineStatVM } from '../models/line-stat-vm';
 import { LineService } from '../line.service';
 import { MessageService } from '../message.service';
-import { tap } from 'rxjs/operators';
+import { tap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.css']
 })
-export class LineChartComponent implements OnInit {
-  @Input() stats: lineStatVM[];
-
+export class LineChartComponent implements OnChanges, OnDestroy {
+  @Input() stats$: Observable<lineStatVM[]>;
+  private readonly onDestroy = new Subject<void>();
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Number of Devices', yAxisID: 'y-axis-0' }
   ];
@@ -58,16 +58,27 @@ export class LineChartComponent implements OnInit {
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   constructor(private messageService: MessageService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    console.log("OnChange Chart");
+    this.stats$.pipe(takeUntil(this.onDestroy))
+               .subscribe(( stats: lineStatVM[] ) => {
+                  console.log(stats, " - SUBSCRIBED");
+                  this.pushOne(stats);
+                });
   }
 
-  public pushOne() {
+  ngOnDestroy() {
+    console.log("DESTROY ", this.onDestroy);
+    this.onDestroy.next();
+  }
+
+  public pushOne(stats: lineStatVM[]) {
     let data_labels: Label[] = this.lineChartLabels as Label[];
 
     this.lineChartData.forEach((x, i) => {
       console.log(x, i);
       let data_values: number[] = x.data as number[];
-      this.stats.forEach((value:lineStatVM)=>{
+      stats.forEach((value:lineStatVM)=>{
         //console.log(value);
         data_values.push(value.nDevices);
         data_labels.push(value.minute.toString());
@@ -77,6 +88,23 @@ export class LineChartComponent implements OnInit {
     });
     this.lineChartLabels.push();
   }
+
+  // public pushOne() {
+  //   let data_labels: Label[] = this.lineChartLabels as Label[];
+
+  //   this.lineChartData.forEach((x, i) => {
+  //     console.log(x, i);
+  //     let data_values: number[] = x.data as number[];
+  //     this.stats.forEach((value:lineStatVM)=>{
+  //       //console.log(value);
+  //       data_values.push(value.nDevices);
+  //       data_labels.push(value.minute.toString());
+  //     });
+  //     //x.data = data_values;
+  //     console.log(x.data);
+  //   });
+  //   this.lineChartLabels.push();
+  // }
 
 
 

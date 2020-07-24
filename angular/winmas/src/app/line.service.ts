@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../environments/environment'
 import { Observable } from 'rxjs';
 import { lineStatVM } from './models/line-stat-vm';
-import { tap, map, switchMap } from 'rxjs/operators';
+import { tap, map, switchMap, shareReplay } from 'rxjs/operators';
 import { kMaxLength } from 'buffer';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class LineService {
 
   //to do: test and finish
   getStats(date: Number): Observable<lineStatVM[]> {
-    console.log("service: ", date);
+    // console.log("service: ", date);
     return this.httpClient.get(
       `${environment.apiUrl}stats?start_date=` + date, {
         responseType:"json",
@@ -27,14 +27,15 @@ export class LineService {
         console.log('get_stats', data);
       }),
       map((data:Object) => {
-        console.log(data.toString());
+        // console.log(data.toString());
         let a:lineStatVM[] =[];
         for(var k in data){
-          console.log(k,data[k]);
+          // console.log(k,data[k]);
           a.push({nDevices:data[k],minute:k});
         }
         return a;
-      }))
+      }),
+      shareReplay(1))
   }
 
 }
