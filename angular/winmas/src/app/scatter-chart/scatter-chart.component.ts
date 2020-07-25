@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { ChartDataSets, ChartOptions, ChartType, ChartPoint } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { ScatterService } from '../scatter.service';
 
 @Component({
   selector: 'app-scatter-chart',
@@ -14,25 +15,41 @@ export class ScatterChartComponent implements OnInit {
   };
 
   public scatterChartLabels: Label[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
-
+ChartDataSets
   public scatterChartData: ChartDataSets[] = [
     {
       data: [
-        { x: 1, y: 1 },
-        { x: 2, y: 3 },
-        { x: 3, y: -2 },
-        { x: 4, y: 4 },
-        { x: 5, y: -3, r: 20 },
+        { x: 0, y: 0 },
       ],
-      label: 'Series A',
+      label: 'Esps1',
+
       pointRadius: 10,
-    },
+    }
   ];
   public scatterChartType: ChartType = 'scatter';
 
-  constructor() { }
+  constructor(private scatterService: ScatterService) { }
+
 
   ngOnInit() {
+    this.scatterService.getEsps().subscribe((data: Map<string, Map<string, number>>) => {
+      console.log("DATAAA: ", data);
+      this.ChartDataSets = [];
+      data.forEach((pos, esp_name) => {
+        console.log(pos, esp_name);
+
+        let row: ChartDataSets;
+        let point: ChartPoint;
+        point.x = pos["X"];
+        point.y = pos["Y"];
+        row.data = [point];
+        row.label = esp_name;
+        row.pointRadius = 1;
+        //set others property of row
+        this.scatterChartData.push(row);
+      })
+      console.log(this.ChartDataSets);
+    });
   }
 
   // events
