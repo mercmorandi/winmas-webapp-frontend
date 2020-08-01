@@ -1,8 +1,17 @@
-<div style="display: block;">
+<div *ngIf = "scatterChartData.length > 0"style="display: block;">
   <canvas baseChart
     [datasets]="scatterChartData"
     [options]="scatterChartOptions"
     [labels]="scatterChartLabels"
     [chartType]="scatterChartType">
   </canvas>
+  <div *ngIf="current_date">
+    <button mat-icon-button >
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+      {{current_date | date: 'yyyy/MM/dd, HH:mm'}}
+    <button mat-icon-button>
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
 </div>
