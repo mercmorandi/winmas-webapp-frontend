@@ -6,11 +6,11 @@
     [chartType]="scatterChartType">
   </canvas>
   <div *ngIf="current_date">
-    <button mat-icon-button >
+    <button *ngIf="current_date!=start_date" mat-icon-button (click) = "goBackward()">
       <mat-icon>navigate_before</mat-icon>
     </button>
-      {{current_date | date: 'yyyy/MM/dd, HH:mm'}}
-    <button mat-icon-button>
+      {{current_date*1000 | date: 'yyyy/MM/dd, HH:mm'}}
+    <button *ngIf="current_date!=end_date" mat-icon-button (click) = "goForward()">
       <mat-icon>navigate_next</mat-icon>
     </button>
   </div>

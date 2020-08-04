@@ -5,6 +5,7 @@ import { EspInfo } from '../models/esp-info';
 import { ScatterService } from '../scatter.service';
 import { Dates } from '../models/dates';
 import { Device } from '../models/device';
+import { DeviceDates } from '../models/device-dates';
 
 @Component({
   selector: 'app-scatter-dashboard',
@@ -32,7 +33,7 @@ export class ScatterDashboardComponent implements OnInit {
   );
 
   esps: EspInfo[] = []
-  devices: Device[] = []
+  devicesDates: DeviceDates
 
   constructor(private breakpointObserver: BreakpointObserver, private scatterService: ScatterService) { }
 
@@ -46,10 +47,9 @@ export class ScatterDashboardComponent implements OnInit {
 
   public getDates(dates: Dates){
     console.log('submit dates from child ', dates)
-    this.scatterService.getActiveDevices(dates).subscribe((devices: Device[]) => {
-      this.devices = []
-      this.devices = devices
-      console.log(devices)
+    this.scatterService.getActiveDevices(dates).subscribe((devicesDates: DeviceDates) => {
+      this.devicesDates = devicesDates
+      console.log(devicesDates)
     })
   }
 }
