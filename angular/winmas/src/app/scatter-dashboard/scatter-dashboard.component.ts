@@ -21,19 +21,28 @@ export class ScatterDashboardComponent implements OnInit {
           { title: 'Position Monitoring', cols: 2, rows: 2, chart: true },
           { title: 'Table Positions', cols: 2, rows: 2, table: true },
           { title: 'Position Configurations', cols: 2, rows: 1, config: true },
+          { title: 'Device Details', cols: 2, rows: 2, details: false },
         ];
       }
 
       return [
-        { title: 'Position Monitoring', cols: 2, rows: 2, chart: true },
-        { title: 'Position Configurations', cols: 1, rows: 1, config: true },
-        { title: 'Table Positions', cols: 1, rows: 2, table: true },
+        { title: 'Position Monitoring', cols: 2, rows: 2, chart: true, visibility: true },
+        { title: 'Position Configurations', cols: 1, rows: 1, config: true, visibility: true},
+        { title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
+        { title: 'Device Details', cols: 2, rows: 2, details: false, visibility: false },
       ];
     })
   );
 
   esps: EspInfo[] = []
   devicesDates: DeviceDates
+  devices: Device[] = []
+  cards2 = [
+    { title: 'Position Monitoring', cols: 2, rows: 2, chart: true, visibility: true },
+    { title: 'Position Configurations', cols: 1, rows: 1, config: true, visibility: true},
+    { title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
+    { title: 'Device Details', cols: 2, rows: 2, details: false, visibility: false },
+  ]
 
   constructor(private breakpointObserver: BreakpointObserver, private scatterService: ScatterService) { }
 
@@ -51,5 +60,17 @@ export class ScatterDashboardComponent implements OnInit {
       this.devicesDates = devicesDates
       console.log(devicesDates)
     })
+    this.cards2[2].visibility = true
+  }
+
+  public getDevicesTable(devices: Device[]){
+    console.log('submit devices from child ', devices)
+    this.devices = devices
+    
+  }
+
+  public getDeviceDetails(id:number){
+    console.log(id)
+    this.cards2[3].visibility = true
   }
 }

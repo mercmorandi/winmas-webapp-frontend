@@ -1,8 +1,8 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list cols="3" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
+    <mat-grid-tile *ngFor="let card of cards2" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card *ngIf="card.visibility" class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
             {{card.title}}
@@ -17,9 +17,10 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <!--<div>Card Content Here</div>-->
-          <app-scatter-chart [esps]="esps" [devicesDates] = "devicesDates" *ngIf="card.chart"></app-scatter-chart>
+          <app-scatter-chart [esps]="esps" [devicesDates] = "devicesDates" (devicesTable) = "getDevicesTable($event)" *ngIf="card.chart"></app-scatter-chart>
           <app-scatter-config (dates)="getDates($event)"*ngIf="card.config"></app-scatter-config>
-          <app-scatter-table *ngIf="card.table"></app-scatter-table>
+          <app-scatter-table  *ngIf="card.table" [devices] = "devices" (deviceDetail) = "getDeviceDetails($event)"></app-scatter-table>
+          <app-scatter-details></app-scatter-details>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType, ChartPoint } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ScatterService } from '../scatter.service';
@@ -38,6 +38,7 @@ export class ScatterChartComponent {
     }
   }
 
+  @Output() devicesTable: EventEmitter<Device[]> = new EventEmitter<Device[]>()
 
   _esps: EspInfo[] = []
   devices_points: any = {}
@@ -135,12 +136,16 @@ export class ScatterChartComponent {
   public drawData() {
     this.scatterChartData = []
     this.addEspChart()
+    let devicesTable: Device[] = []
 
     if (_.has(this.devices_points, this.current_date)) {
       this.devices_points[this.current_date.toString()].forEach((devicePoint: DevicePoint) => {
         this.scatterChartData.push(devicePoint.point);
+        devicesTable.push(devicePoint.device)
       })
     }
+
+    this.devicesTable.emit(devicesTable)
 
   }
 
@@ -173,7 +178,7 @@ export class ScatterChartComponent {
     point["y"] = esp.y;
     row.data = [point];
     row.label = esp.name;
-    row.pointRadius = 5;
+    row.pointRadius = 8;
     //set others property of row
     row.pointBackgroundColor = '#F0F8FF'
     row.backgroundColor = '#F0F8FF'
