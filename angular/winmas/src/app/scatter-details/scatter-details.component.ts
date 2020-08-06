@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-scatter-details',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scatter-details.component.css']
 })
 export class ScatterDetailsComponent implements OnInit {
+
+  @Input() deviceId: number
 
   constructor() { }
 

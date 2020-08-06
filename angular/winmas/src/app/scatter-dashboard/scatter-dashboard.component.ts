@@ -41,8 +41,9 @@ export class ScatterDashboardComponent implements OnInit {
     { title: 'Position Monitoring', cols: 2, rows: 2, chart: true, visibility: true },
     { title: 'Position Configurations', cols: 1, rows: 1, config: true, visibility: true},
     { title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
-    { title: 'Device Details', cols: 2, rows: 2, details: false, visibility: false },
+    { title: 'Device Details', cols: 2, rows: 2, details: true, visibility: false },
   ]
+  deviceIdDetails: number
 
   constructor(private breakpointObserver: BreakpointObserver, private scatterService: ScatterService) { }
 
@@ -71,6 +72,7 @@ export class ScatterDashboardComponent implements OnInit {
 
   public getDeviceDetails(id:number){
     console.log(id)
+    this.deviceIdDetails = id
     this.cards2[3].visibility = true
   }
 }

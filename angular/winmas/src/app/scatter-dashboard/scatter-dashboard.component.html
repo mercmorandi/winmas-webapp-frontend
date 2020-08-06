@@ -20,7 +20,7 @@
           <app-scatter-chart [esps]="esps" [devicesDates] = "devicesDates" (devicesTable) = "getDevicesTable($event)" *ngIf="card.chart"></app-scatter-chart>
           <app-scatter-config (dates)="getDates($event)"*ngIf="card.config"></app-scatter-config>
           <app-scatter-table  *ngIf="card.table" [devices] = "devices" (deviceDetail) = "getDeviceDetails($event)"></app-scatter-table>
-          <app-scatter-details></app-scatter-details>
+          <app-scatter-details *ngIf="card.details" [deviceId] = "deviceIdDetails"></app-scatter-details>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
