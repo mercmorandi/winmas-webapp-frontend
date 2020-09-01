@@ -15,6 +15,7 @@ export class ScatterTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<ScatterTableItem>;
   dataSource: ScatterTableDataSource;
+  currentId: number;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   //displayedColumns = ['id', 'name'];
@@ -33,6 +34,7 @@ export class ScatterTableComponent implements AfterViewInit, OnInit {
   }
 
   goDetails(id:number){
+    this.currentId = id
     this.deviceDetail.emit(id)
   }
 }

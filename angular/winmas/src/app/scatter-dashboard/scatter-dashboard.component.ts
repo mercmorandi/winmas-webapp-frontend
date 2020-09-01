@@ -6,6 +6,7 @@ import { ScatterService } from '../scatter.service';
 import { Dates } from '../models/dates';
 import { Device } from '../models/device';
 import { DeviceDates } from '../models/device-dates';
+import { DeviceInfo } from '../models/device-info';
 
 @Component({
   selector: 'app-scatter-dashboard',
@@ -44,6 +45,7 @@ export class ScatterDashboardComponent implements OnInit {
     { title: 'Device Details', cols: 2, rows: 2, details: true, visibility: false },
   ]
   deviceIdDetails: number
+  deviceInfo: DeviceInfo = new DeviceInfo()
 
   constructor(private breakpointObserver: BreakpointObserver, private scatterService: ScatterService) { }
 
@@ -61,6 +63,8 @@ export class ScatterDashboardComponent implements OnInit {
       this.devicesDates = devicesDates
       console.log(devicesDates)
     })
+    this.deviceInfo = new DeviceInfo()
+    this.cards2[3].visibility = false
     this.cards2[2].visibility = true
   }
 
@@ -71,8 +75,11 @@ export class ScatterDashboardComponent implements OnInit {
   }
 
   public getDeviceDetails(id:number){
-    console.log(id)
     this.deviceIdDetails = id
+    this.scatterService.getDeviceInfo(id).subscribe((data: DeviceInfo) => {
+      this.deviceInfo = data
+      console.log("device info: ", this.deviceInfo)
+    })
     this.cards2[3].visibility = true
   }
 }

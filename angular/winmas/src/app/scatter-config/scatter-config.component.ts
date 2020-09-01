@@ -30,17 +30,17 @@ export class ScatterConfigComponent {
     this.dates.emit({start_date: this.start_date, end_date: this.end_date})
   }
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.message.success(`${type}: ${event.value}`);
-  }
+  // addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+  //   this.message.success(`${type}: ${event.value}`);
+  // }
 
   setDate(selectedDate: Date, type) {
     if (type == 'start_date') {
       this.start_date = Math.trunc(selectedDate.getTime() / 1000);
-      this.message.success("Selected start_date :\n" + new Date(this.start_date * 1000) + "\n(" + this.start_date + ")");
+      //this.message.success("Selected start_date :\n" + new Date(this.start_date * 1000) + "\n(" + this.start_date + ")");
     }else{
       this.end_date = Math.trunc(selectedDate.getTime() / 1000);
-      this.message.success("Selected end_date:\n" + new Date(this.end_date * 1000) + "\n(" + this.end_date + ")");
+      //this.message.success("Selected end_date:\n" + new Date(this.end_date * 1000) + "\n(" + this.end_date + ")");
     }
   }
 }

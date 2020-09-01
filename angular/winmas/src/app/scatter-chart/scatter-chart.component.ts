@@ -48,6 +48,21 @@ export class ScatterChartComponent {
   end_date: number
 
   public scatterChartOptions: ChartOptions = {
+    tooltips: {
+      callbacks: {
+          label: function(tooltipItem, data) {
+              var row = data.datasets[tooltipItem.datasetIndex]
+              var label = []
+              label.push('name: '+row.label || '' );
+              console.log('tooltip: ',tooltipItem)
+              label.push('x: '+tooltipItem.xLabel)
+              label.push('y: '+tooltipItem.yLabel)
+              var test = []
+              test.push(label)
+              return test;
+          },
+      }
+  },
     responsive: true,
     scales: {
       yAxes: [{
@@ -124,9 +139,9 @@ export class ScatterChartComponent {
     console.log(this.devices_points)
     console.log('-------------')
 
-    _.forEach(this.devices_points, (value,key) =>{
-      console.log(new Date(parseInt(key)*1000))
-    } )
+    _.forEach(this.devices_points, (value, key) => {
+      console.log(new Date(parseInt(key) * 1000))
+    })
 
     this.drawData()
 

@@ -40,7 +40,8 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateMod
 import { HttpClientModule } from '@angular/common/http';
 import { LineTableComponent } from './line-table/line-table.component';
 import { ScatterDetailsComponent } from './scatter-details/scatter-details.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -92,7 +93,9 @@ const appRoutes: Routes = [
     MatSortModule,
     MatSnackBarModule,
     NgxMaterialTimepickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    MatTabsModule,
+    MatDividerModule
     ],
 
   bootstrap: [AppComponent]

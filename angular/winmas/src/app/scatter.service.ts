@@ -7,6 +7,7 @@ import { EspInfo } from '../app/models/esp-info'
 import { Device } from '../app/models/device'
 import { Dates } from './models/dates';
 import { DeviceDates } from './models/device-dates';
+import { DeviceInfo } from './models/device-info';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,22 @@ export class ScatterService {
         catchError(err => throwError('client error'))
       )
   }
+
+  getDeviceInfo(id: number):Observable<DeviceInfo>{
+    
+    return this.httpClient
+      .get<DeviceInfo>(`${environment.apiUrl}device/${id}`, 
+      )
+      .pipe(
+        //tap((data)=>console.log(data)),
+        map((data: DeviceInfo) => {
+          console.log("device_Dates: ",data)
+          return data
+        }),
+        catchError(err => throwError('client error'))
+      )
+  }
+
+
 
 }
