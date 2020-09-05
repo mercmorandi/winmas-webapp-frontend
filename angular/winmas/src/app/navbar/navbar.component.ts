@@ -8,7 +8,7 @@ import { map, shareReplay } from 'rxjs/operators';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent { 
   title = "Winmas : Wi-Fi Is Not Mary's Son";
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -16,6 +16,18 @@ export class NavbarComponent {
       shareReplay()
     );
 
+  private status = false;
+
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  public start() {
+    this.status = true;
+    //add request to start
+  }
+
+  public stop() {
+    this.status = false;
+    //add request to stop
+  }
 
 }
