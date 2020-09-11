@@ -1,4 +1,4 @@
-<div class="flex">
+<!-- <div class="flex">
   <div class="flex-item">
     <div style="display: block;">
       <canvas baseChart width="400" height="400"
@@ -22,11 +22,29 @@
       <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
         <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
       </tr>
-    </table>
+    </table> -->
     <!--<button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>-->
     <!-- <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button> -->
     <!-- <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
     <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
     <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button> -->
-  </div>
+  <!-- </div>
+</div> -->
+
+<div *ngIf = "lineChartData.length > 0"style="display: block;">
+  <canvas baseChart
+    [datasets]="lineChartData"
+    [options]="lineChartOptions"
+    [labels]="lineChartLabels"
+    [chartType]="lineChartType">
+  </canvas>
+  <!-- <div *ngIf="current_date">
+    <button *ngIf="current_date!=start_date" mat-icon-button (click) = "goBackward()">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+      {{current_date*1000 | date: 'yyyy/MM/dd, HH:mm'}}
+    <button *ngIf="current_date!=end_date" mat-icon-button (click) = "goForward()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div> -->
 </div>

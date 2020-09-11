@@ -22,21 +22,37 @@ export class LineChartComponent implements OnChanges, OnDestroy {
   public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
+    // scales: {
+    //   // We use this empty structure as a placeholder for dynamic theming.
+    //   xAxes: [{}],
+    //   yAxes: [
+    //     {
+    //       id: 'y-axis-0',
+    //       position: 'right',
+    //       gridLines: {
+    //         color: 'rgba(255,0,0,0.3)',
+    //       },
+    //       ticks: {
+    //         fontColor: 'red',
+    //       }
+    //     }
+    //   ]
+    //},
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'right',
-          gridLines: {
-            color: 'rgba(255,0,0,0.3)',
-          },
-          ticks: {
-            fontColor: 'red',
-          }
+      yAxes: [{
+        ticks: {
+          suggestedMin: -15,
+          suggestedMax: 15,
+          stepSize: 0.5
         }
-      ]
+      }],
+      xAxes: [{
+        ticks: {
+          suggestedMin: -15,
+          suggestedMax: 15,
+          stepSize: 0.5
+        }
+      }]
     },
     annotation: {
     }
