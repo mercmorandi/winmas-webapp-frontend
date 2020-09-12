@@ -1,0 +1,88 @@
+import { Injectable } from '@angular/core';
+import * as io from "socket.io-client";
+import { Observable, throwError, BehaviorSubject } from "rxjs";
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { catchError, switchMap, tap } from 'rxjs/operators';
+import { ProxyStatus } from './models/proxy-status';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProxyService {
+
+  private socket
+  private _current_status = new BehaviorSubject<ProxyStatus>(new ProxyStatus("unknown"));
+  current_status$ = this._current_status.asObservable();
+
+  constructor(private httpClient: HttpClient) {
+    this.socket = io('http://localhost:5000');
+  }
+
+  public startProxy(proxyConf) {
+    let params = new HttpParams();
+    params = params.append('host', proxyConf.host);
+    params = params.append('port', proxyConf.port);
+    return this.httpClient
+      .get<string>(`${environment.apiUrl}start_proxy/`,
+        { params: params }
+      )
+      .pipe(
+        //tap((data)=>console.log(data)),),
+        catchError(err => throwError('client error'))
+      )
+  }
+
+  public stopProxy() {
+    console.log("into stop proxy")
+    return this.httpClient.get(`${environment.apiUrl}stop_proxy/`)
+      .pipe(
+        //tap((data)=>console.log(data)),),
+        catchError(err => throwError('client error'))
+      )
+  }
+  public startProxyAndListen(proxyConf) {
+    let params = new HttpParams();
+    params = params.append('host', proxyConf.host);
+    params = params.append('port', proxyConf.port);
+    this.httpClient
+      .get(`${environment.apiUrl}start_proxy`,
+        { params: params }
+      ).subscribe(this.getStatues().subscribe(status => {
+        console.log("new_status ", status)
+        //this._current_status.next(status)
+      }))
+  }
+
+  public sendProxyConf(proxyConf) {
+    this.socket.emit("start_proxy", proxyConf);
+  }
+
+  public getCurrentStatus(): Observable<ProxyStatus> {
+    return this.httpClient
+      .get<ProxyStatus>(`${environment.apiUrl}current_proxy_status`)
+      .pipe(
+        tap((data) => console.log(data)),
+        catchError(err => throwError('client error'))
+      )
+  }
+
+
+  public getMessages = () => {
+    return Observable.create(observer => {
+      this.socket.on("new-message", message => {
+        console.log("message from server")
+        observer.next(message);
+      });
+    });
+  };
+  public getStatues = () => {
+    return Observable.create(observer => {
+      this.socket.on("proxy_status", status => {
+        console.log("status from socket io ", status)
+        this._current_status.next(new ProxyStatus(status))
+        //observer.next(status);
+      });
+    });
+  };
+}

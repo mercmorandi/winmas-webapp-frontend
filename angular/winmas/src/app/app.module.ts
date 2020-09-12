@@ -15,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { Routes, RouterModule } from '@angular/router'
 
@@ -45,11 +46,15 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HistogramChartComponent } from './histogram-chart/histogram-chart.component';
 import { HistogramDashboardComponent } from './histogram-dashboard/histogram-dashboard.component';
 import { HistogramConfigComponent } from './histogram-config/histogram-config.component';
+import { ProxyDashboardComponent } from './proxy-dashboard/proxy-dashboard.component';
+import { ProxyConfigComponent } from './proxy-config/proxy-config.component';
+import { ProxyStatusComponent } from './proxy-status/proxy-status.component';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
   { path: 'line-dashboard', component: LineDashboardComponent },
   { path: 'histogram-dashboard', component: HistogramDashboardComponent },
+  { path: 'proxy-dashboard', component: ProxyDashboardComponent },
   { path: '', redirectTo:'/scatter-dashboard', pathMatch: 'full' }
 ]
 @NgModule({
@@ -68,6 +73,9 @@ const appRoutes: Routes = [
     HistogramChartComponent,
     HistogramDashboardComponent,
     HistogramConfigComponent
+    ProxyDashboardComponent,
+    ProxyConfigComponent,
+    ProxyStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +110,8 @@ const appRoutes: Routes = [
     NgxMaterialTimepickerModule,
     NgxMatNativeDateModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatFormFieldModule
     ],
 
   bootstrap: [AppComponent]
