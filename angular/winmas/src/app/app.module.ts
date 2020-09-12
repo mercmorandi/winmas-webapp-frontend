@@ -42,10 +42,14 @@ import { LineTableComponent } from './line-table/line-table.component';
 import { ScatterDetailsComponent } from './scatter-details/scatter-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
+import { HistogramChartComponent } from './histogram-chart/histogram-chart.component';
+import { HistogramDashboardComponent } from './histogram-dashboard/histogram-dashboard.component';
+import { HistogramConfigComponent } from './histogram-config/histogram-config.component';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
   { path: 'line-dashboard', component: LineDashboardComponent },
+  { path: 'histogram-dashboard', component: HistogramDashboardComponent },
   { path: '', redirectTo:'/scatter-dashboard', pathMatch: 'full' }
 ]
 @NgModule({
@@ -60,7 +64,10 @@ const appRoutes: Routes = [
     LineChartComponent,
     LineConfigComponent,
     LineTableComponent,
-    ScatterDetailsComponent
+    ScatterDetailsComponent,
+    HistogramChartComponent,
+    HistogramDashboardComponent,
+    HistogramConfigComponent
   ],
   imports: [
     BrowserModule,
