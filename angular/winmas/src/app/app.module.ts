@@ -15,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { Routes, RouterModule } from '@angular/router'
 
@@ -42,10 +43,14 @@ import { LineTableComponent } from './line-table/line-table.component';
 import { ScatterDetailsComponent } from './scatter-details/scatter-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
+import { ProxyDashboardComponent } from './proxy-dashboard/proxy-dashboard.component';
+import { ProxyConfigComponent } from './proxy-config/proxy-config.component';
+import { ProxyStatusComponent } from './proxy-status/proxy-status.component';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
   { path: 'line-dashboard', component: LineDashboardComponent },
+  { path: 'proxy-dashboard', component: ProxyDashboardComponent },
   { path: '', redirectTo:'/scatter-dashboard', pathMatch: 'full' }
 ]
 @NgModule({
@@ -60,7 +65,10 @@ const appRoutes: Routes = [
     LineChartComponent,
     LineConfigComponent,
     LineTableComponent,
-    ScatterDetailsComponent
+    ScatterDetailsComponent,
+    ProxyDashboardComponent,
+    ProxyConfigComponent,
+    ProxyStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +103,8 @@ const appRoutes: Routes = [
     NgxMaterialTimepickerModule,
     NgxMatNativeDateModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatFormFieldModule
     ],
 
   bootstrap: [AppComponent]
