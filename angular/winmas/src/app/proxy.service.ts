@@ -76,6 +76,15 @@ export class ProxyService {
       });
     });
   };
+
+  public getLocations = () => {
+    return Observable.create(observer => {
+      this.socket.on("new-location", (location: Location) => {
+        console.log("location from server: ",location )
+        observer.next(location);
+      });
+    });
+  };
   public getStatues = () => {
     return Observable.create(observer => {
       this.socket.on("proxy_status", status => {

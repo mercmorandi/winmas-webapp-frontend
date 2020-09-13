@@ -13,10 +13,13 @@ export class ProxyDashboardComponent implements OnInit, OnDestroy {
 
   cards = [
     { title: 'Proxy config', cols: 2, rows: 2, chart: true, visibility: true },
-    { title: 'Proxy Status', cols: 1, rows: 1, config: true, visibility: true},
+    { title: 'Proxy Status', cols: 1, rows: 1, status: true, visibility: true},
+    { title: 'Proxy Logger', cols: 2, rows: 2, logger: true, visibility: true},
   ]
 
   messages = []
+  locations: Location[] = []
+  new_locations: Location[] = []
   current_status: ProxyStatus
   message_subscription: Subscription
   status_subscription: Subscription
@@ -26,12 +29,22 @@ export class ProxyDashboardComponent implements OnInit, OnDestroy {
     this.message_subscription = this.proxyService.getMessages().subscribe( message => {
       console.log("messaggio ricevuto: ", message)
       this.messages.push(message)
+    })
 
+    this.message_subscription = this.proxyService.getLocations().subscribe( location => {
+      console.log("location ricevuto: ", location)
+      this.locations.push(location)
+      this.new_locations = Array.from(this.locations)
     })
 
     this.proxyService.getCurrentStatus().subscribe( (status:ProxyStatus) => {
       console.log("new status: ", status)
       this.current_status=status
+      if (status.status == "on"){
+        this.cards[2].visibility=true
+      }else{
+        this.cards[2].visibility=false
+      }
     })
     this.proxyService.current_status$.subscribe(status => {
       this.current_status = status
@@ -54,13 +67,16 @@ export class ProxyDashboardComponent implements OnInit, OnDestroy {
 
     this.proxyService.startProxy(proxyConf).subscribe( () =>{
       console.log("proxy acceso")
+      this.cards[2].visibility = true
     })
   }
 
   public stopProxy(){
     console.log("stopping proxy")
+    this.cards[2].visibility = false
     this.proxyService.stopProxy().subscribe(() => {
       console.log("proxy spento")
+      
     })
   }
 

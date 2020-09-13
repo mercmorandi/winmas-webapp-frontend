@@ -1,0 +1,7 @@
+<p>proxy-logger works!</p>
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div *cdkVirtualFor="let location of locations" class="example-item">{{ location.insertion_date || 'Loading...' }} {{ location.mac }} {{ locations.ssid }} {{ location.x }} {{ location.y }}</div>
+  </cdk-virtual-scroll-viewport>
+<!-- <ul>
+    <li *ngFor="let location of locations">{{ location.insertion_date }} {{ location.mac }} {{ locations.ssid }} {{ location.x }} {{ location.y }}</li>
+</ul> -->

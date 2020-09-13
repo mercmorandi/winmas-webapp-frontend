@@ -46,6 +46,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ProxyDashboardComponent } from './proxy-dashboard/proxy-dashboard.component';
 import { ProxyConfigComponent } from './proxy-config/proxy-config.component';
 import { ProxyStatusComponent } from './proxy-status/proxy-status.component';
+import { ProxyLoggerComponent } from './proxy-logger/proxy-logger.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -68,7 +70,8 @@ const appRoutes: Routes = [
     ScatterDetailsComponent,
     ProxyDashboardComponent,
     ProxyConfigComponent,
-    ProxyStatusComponent
+    ProxyStatusComponent,
+    ProxyLoggerComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +107,8 @@ const appRoutes: Routes = [
     NgxMatNativeDateModule,
     MatTabsModule,
     MatDividerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ScrollingModule
     ],
 
   bootstrap: [AppComponent]
