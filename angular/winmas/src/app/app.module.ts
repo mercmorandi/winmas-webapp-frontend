@@ -74,7 +74,7 @@ const appRoutes: Routes = [
     ScatterDetailsComponent,
     HistogramChartComponent,
     HistogramDashboardComponent,
-    HistogramConfigComponent
+    HistogramConfigComponent,
     ProxyDashboardComponent,
     ProxyConfigComponent,
     ProxyStatusComponent,
