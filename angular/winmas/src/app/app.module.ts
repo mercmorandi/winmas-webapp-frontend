@@ -43,6 +43,9 @@ import { LineTableComponent } from './line-table/line-table.component';
 import { ScatterDetailsComponent } from './scatter-details/scatter-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
+import { HistogramChartComponent } from './histogram-chart/histogram-chart.component';
+import { HistogramDashboardComponent } from './histogram-dashboard/histogram-dashboard.component';
+import { HistogramConfigComponent } from './histogram-config/histogram-config.component';
 import { ProxyDashboardComponent } from './proxy-dashboard/proxy-dashboard.component';
 import { ProxyConfigComponent } from './proxy-config/proxy-config.component';
 import { ProxyStatusComponent } from './proxy-status/proxy-status.component';
@@ -52,6 +55,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
   { path: 'line-dashboard', component: LineDashboardComponent },
+  { path: 'histogram-dashboard', component: HistogramDashboardComponent },
   { path: 'proxy-dashboard', component: ProxyDashboardComponent },
   { path: '', redirectTo:'/scatter-dashboard', pathMatch: 'full' }
 ]
@@ -68,6 +72,9 @@ const appRoutes: Routes = [
     LineConfigComponent,
     LineTableComponent,
     ScatterDetailsComponent,
+    HistogramChartComponent,
+    HistogramDashboardComponent,
+    HistogramConfigComponent
     ProxyDashboardComponent,
     ProxyConfigComponent,
     ProxyStatusComponent,

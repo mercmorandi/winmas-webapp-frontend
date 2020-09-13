@@ -42,3 +42,24 @@ export class DevicePoint {
     }
 }
 
+export class DeviceBar {
+    device: Device
+    bar: ChartDataSets
+
+    constructor(device: Device, color: string) {
+        this.device = device;
+        this.bar = this.generateBar(length, color)
+    }
+
+    generateBar(length, color) {
+        let row: ChartDataSets = {};
+
+        row.data = [length];
+        row.label = this.device.mac;
+
+        //set others property of row
+        row.pointBackgroundColor = color
+        row.backgroundColor = color
+        return row 
+    }
+}
