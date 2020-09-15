@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ScatterTableDataSource, ScatterTableItem } from './scatter-table-datasource';
+import { ScatterTableItem } from './scatter-table-datasource';
 import { Device } from '../models/device';
+import { TableVirtualScrollDataSource } from 'ng-table-virtual-scroll';
 
 @Component({
   selector: 'app-scatter-table',
@@ -11,26 +11,28 @@ import { Device } from '../models/device';
   styleUrls: ['./scatter-table.component.css']
 })
 export class ScatterTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<ScatterTableItem>;
-  dataSource: ScatterTableDataSource;
+  dataSource = new TableVirtualScrollDataSource();
   currentId: number;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  //displayedColumns = ['id', 'name'];
   displayedColumns = ['detail','mac', 'x', 'y'];
-  @Input() devices: Device[] = []
+  @Input() set devices(devices: Device[]) {
+    console.log(devices)
+
+    this.setDataSource(devices)
+  }
   @Output() deviceDetail: EventEmitter<number> = new EventEmitter<number>()
 
   ngOnInit() {
-    this.dataSource = new ScatterTableDataSource();
+    //this.dataSource = new TableVirtualScrollDataSource();
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  }
+  setDataSource(devices: Device[]) {
+    this.dataSource = new TableVirtualScrollDataSource(devices)
   }
 
   goDetails(id:number){

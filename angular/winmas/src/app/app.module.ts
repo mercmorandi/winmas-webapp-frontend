@@ -51,6 +51,7 @@ import { ProxyConfigComponent } from './proxy-config/proxy-config.component';
 import { ProxyStatusComponent } from './proxy-status/proxy-status.component';
 import { ProxyLoggerComponent } from './proxy-logger/proxy-logger.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -115,7 +116,8 @@ const appRoutes: Routes = [
     MatTabsModule,
     MatDividerModule,
     MatFormFieldModule,
-    ScrollingModule
+    ScrollingModule,
+    TableVirtualScrollModule
     ],
 
   bootstrap: [AppComponent]
