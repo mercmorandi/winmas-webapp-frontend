@@ -4,7 +4,7 @@ import { Label } from 'ng2-charts';
 import { ScatterService } from '../scatter.service';
 import * as _ from "lodash";
 import { EspInfo } from '../models/esp-info';
-import { Device, DevicePoint } from '../models/device';
+import { Device, DevicePoint, DeviceTable } from '../models/device';
 import { Dates } from '../models/dates';
 import { DeviceDates } from '../models/device-dates';
 
@@ -38,7 +38,7 @@ export class ScatterChartComponent {
     }
   }
 
-  @Output() devicesTable: EventEmitter<Device[]> = new EventEmitter<Device[]>()
+  @Output() devicesTable: EventEmitter<DeviceTable[]> = new EventEmitter<DeviceTable[]>()
 
   _esps: EspInfo[] = []
   devices_points: any = {}
@@ -81,13 +81,14 @@ export class ScatterChartComponent {
       }]
     },
     legend: {
+      display: false,
       position: 'bottom',
       fullWidth: true,
     },
 
   };
 
-  public scatterChartLabels: Label[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
+  public scatterChartLabels: Label[] = [];
   public scatterChartData: ChartDataSets[] = []
   public scatterChartType: ChartType = 'scatter';
 
@@ -151,12 +152,12 @@ export class ScatterChartComponent {
   public drawData() {
     this.scatterChartData = []
     this.addEspChart()
-    let devicesTable: Device[] = []
+    let devicesTable: DeviceTable[] = []
 
     if (_.has(this.devices_points, this.current_date)) {
       this.devices_points[this.current_date.toString()].forEach((devicePoint: DevicePoint) => {
         this.scatterChartData.push(devicePoint.point);
-        devicesTable.push(devicePoint.device)
+        devicesTable.push({device:devicePoint.device,color:devicePoint.point.pointBackgroundColor.toString()})
       })
     }
 

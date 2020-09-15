@@ -1,5 +1,16 @@
-<p>proxy-status works!</p>
 <p>Status: {{ current_status }}</p>
-<ul>
-    <li *ngFor="let message of messages">{{ message }}</li>
-</ul>
+<div *ngIf="current_status == 'on'; else offBlock" class="container">
+    <div class="led-box">
+        <div class="led-green"></div>
+        <p>Green LED</p>
+    </div>
+</div>
+
+<ng-template #offBlock>
+<div class="container">
+    <div class="led-box">
+        <div class="led-red"></div>
+        <p>Red LED</p>
+    </div>
+</div>
+</ng-template>

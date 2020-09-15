@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProxyStatusComponent implements OnInit {
 
-  @Input() messages
   @Input() current_status
   constructor() { }
 

@@ -1,15 +1,10 @@
-<p>proxy-dashboard works!</p>
 <div class="grid-container">
-    <h1 class="mat-h1">Proxy Dashboard</h1>
-    <mat-grid-list cols="3" rowHeight="350px">
+    <mat-grid-list cols="4" rowHeight="350px">
         <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
             <mat-card *ngIf="card.visibility" class="dashboard-card">
                 <mat-card-header>
                   <mat-card-title>
                     {{card.title}}
-                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
                     <mat-menu #menu="matMenu" xPosition="before">
                       <button mat-menu-item>Expand</button>
                       <button mat-menu-item>Remove</button>
@@ -19,7 +14,7 @@
                 <mat-card-content class="dashboard-card-content">
                   <!--<div>Card Content Here</div>-->
                   <app-proxy-config (proxyConf)="setProxyConf($event)" (stopEvent)="stopProxy()" [current_status] = "current_status.status" *ngIf="card.chart"></app-proxy-config>
-                  <app-proxy-status [messages] = "messages" [current_status] = "current_status.status" *ngIf="card.status"></app-proxy-status>
+                  <app-proxy-status [current_status] = "current_status.status" *ngIf="card.status"></app-proxy-status>
                   <app-proxy-logger [locations] = "new_locations" *ngIf="card.logger"></app-proxy-logger>
                 </mat-card-content>
               </mat-card>

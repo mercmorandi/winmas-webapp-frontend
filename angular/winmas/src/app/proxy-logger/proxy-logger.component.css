@@ -7,3 +7,16 @@
   .example-item {
     height: 50px;
   }
+
+  .full-width-table {
+    width: 100%;
+  }
+  
+  .wrapper {
+    height: 600px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  

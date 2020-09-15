@@ -16,9 +16,14 @@ export interface Device {
     y: number;
 }
 
+export interface DeviceTable {
+    device: Device;
+    color: string;
+}
+
 export class DevicePoint {
-    device: Device
-    point: ChartDataSets
+    device: Device;
+    point: ChartDataSets;
 
     constructor(device: Device, color: string) {
         this.device = device;

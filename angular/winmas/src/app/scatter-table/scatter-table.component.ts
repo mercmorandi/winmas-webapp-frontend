@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ScatterTableItem } from './scatter-table-datasource';
-import { Device } from '../models/device';
+//import { MatSort } from '@angular/material/sort';
+import { Device, DevicePoint, DeviceTable } from '../models/device';
 import { TableVirtualScrollDataSource } from 'ng-table-virtual-scroll';
 
 @Component({
@@ -11,13 +9,13 @@ import { TableVirtualScrollDataSource } from 'ng-table-virtual-scroll';
   styleUrls: ['./scatter-table.component.css']
 })
 export class ScatterTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<ScatterTableItem>;
+  //@ViewChild(MatSort) sort: MatSort;
+  //@ViewChild(MatTable) table: MatTable<ScatterTableItem>;
   dataSource = new TableVirtualScrollDataSource();
   currentId: number;
 
-  displayedColumns = ['detail','mac', 'x', 'y'];
-  @Input() set devices(devices: Device[]) {
+  displayedColumns = ['color','detail','mac', 'x', 'y'];
+  @Input() set devices(devices: DeviceTable[]) {
     console.log(devices)
 
     this.setDataSource(devices)
@@ -29,9 +27,9 @@ export class ScatterTableComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    //this.dataSource.sort = this.sort;
   }
-  setDataSource(devices: Device[]) {
+  setDataSource(devices: DeviceTable[]) {
     this.dataSource = new TableVirtualScrollDataSource(devices)
   }
 

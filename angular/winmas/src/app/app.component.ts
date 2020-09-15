@@ -11,9 +11,11 @@ export class AppComponent implements OnInit {
     this.proxyService.getStatues().subscribe(() => {
       console.log("subscribed to status socket")
     })
+    this.proxyService.getLocations().subscribe(() => {
+      console.log("subscribed to locations socket")
+    })
   }
   
-  title = "Winmas : Wi-Fi Is Not Mary's Son";
 
   
   constructor(private proxyService: ProxyService) { }

@@ -3,32 +3,42 @@
   <table mat-table [dataSource]="dataSource" class="full-width-table" matSort aria-label="Elements">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <!-- link Column -->
+
+    <ng-container matColumnDef="color">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
+      <td mat-cell *matCellDef="let row">
+        <div [ngStyle]="{'height': '20px', 'width':'20px', 'background-color': row.color}">
+          
+        </div>
+      </td>
+    </ng-container>
+    
+    <!-- detail Column -->
     <ng-container matColumnDef="detail">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>detail</th>
-      <td mat-cell *matCellDef="let row"><button mat-icon-button (click) = "goDetails(row.device_id)">
+      <td mat-cell *matCellDef="let row"><button mat-icon-button (click) = "goDetails(row.device.device_id)">
           
-        <mat-icon *ngIf="row.device_id == currentId">visibility</mat-icon>
-        <mat-icon *ngIf="row.device_id != currentId">visibility_off</mat-icon>
+        <mat-icon *ngIf="row.device.device_id == currentId">visibility</mat-icon>
+        <mat-icon *ngIf="row.device.device_id != currentId">visibility_off</mat-icon>
         </button></td>
     </ng-container>
 
     <!-- mac Column -->
     <ng-container matColumnDef="mac">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>MAC</th>
-      <td mat-cell *matCellDef="let row">{{row.mac}}</td>
+      <td mat-cell *matCellDef="let row">{{row.device.mac}}</td>
     </ng-container>
 
     <!-- X Column -->
     <ng-container matColumnDef="x">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>X</th>
-      <td mat-cell *matCellDef="let row">{{row.x}}</td>
+      <td mat-cell *matCellDef="let row">{{row.device.x}}</td>
     </ng-container>
 
     <!-- Y Column -->
     <ng-container matColumnDef="y">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Y</th>
-      <td mat-cell *matCellDef="let row">{{row.y}}</td>
+      <td mat-cell *matCellDef="let row">{{row.device.y}}</td>
     </ng-container>
   </table>
 </cdk-virtual-scroll-viewport>

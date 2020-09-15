@@ -14,6 +14,8 @@ export class ProxyService {
   private socket
   private _current_status = new BehaviorSubject<ProxyStatus>(new ProxyStatus("unknown"));
   current_status$ = this._current_status.asObservable();
+  private _locations = new BehaviorSubject<Location[]>(new Array<Location>())
+  locations$ = this._locations.asObservable();
 
   constructor(private httpClient: HttpClient) {
     this.socket = io('http://localhost:5000');
@@ -67,6 +69,14 @@ export class ProxyService {
       )
   }
 
+  addLocationToList(location:Location) {
+    // apply the current value of your books Subject to a local variable
+    let loc_list = this._locations.getValue();
+    // push that book into your copy's array
+    loc_list.push(location);
+    // apply the local updated array value as your new array of books Subject
+    this._locations.next(loc_list);
+  }
 
   public getMessages = () => {
     return Observable.create(observer => {
@@ -81,7 +91,8 @@ export class ProxyService {
     return Observable.create(observer => {
       this.socket.on("new-location", (location: Location) => {
         console.log("location from server: ",location )
-        observer.next(location);
+        this.addLocationToList(location)
+        //observer.next(location);
       });
     });
   };

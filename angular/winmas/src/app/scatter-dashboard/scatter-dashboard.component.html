@@ -1,14 +1,13 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="3" rowHeight="350px">
+  <div>
+    <app-scatter-config (dates)="getDates($event)"></app-scatter-config>
+  </div>
+  <mat-grid-list cols="4">
     <mat-grid-tile *ngFor="let card of cards2" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card *ngIf="card.visibility" class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
             {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
             <mat-menu #menu="matMenu" xPosition="before">
               <button mat-menu-item>Expand</button>
               <button mat-menu-item>Remove</button>
@@ -17,10 +16,13 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <!--<div>Card Content Here</div>-->
-          <app-scatter-chart [esps]="esps" [devicesDates] = "devicesDates" (devicesTable) = "getDevicesTable($event)" *ngIf="card.chart"></app-scatter-chart>
-          <app-scatter-config (dates)="getDates($event)"*ngIf="card.config"></app-scatter-config>
-          <app-scatter-table  *ngIf="card.table" [devices] = "devices" (deviceDetail) = "getDeviceDetails($event)"></app-scatter-table>
-          <app-scatter-details *ngIf="card.details" [deviceId] = "deviceIdDetails" [deviceInfo] = "deviceInfo" [locations] = "deviceInfo.locations"></app-scatter-details>
+          <!-- <app-scatter-config (dates)="getDates($event)"*ngIf="card.config"></app-scatter-config> -->
+          <app-scatter-chart [esps]="esps" [devicesDates]="devicesDates" (devicesTable)="getDevicesTable($event)"
+            *ngIf="card.chart"></app-scatter-chart>
+          <app-scatter-table *ngIf="card.table" [devices]="devices" (deviceDetail)="getDeviceDetails($event)">
+          </app-scatter-table>
+          <app-scatter-details *ngIf="card.details" [deviceId]="deviceIdDetails" [deviceInfo]="deviceInfo"
+            [locations]="deviceInfo.locations"></app-scatter-details>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
