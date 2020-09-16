@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TableVirtualScrollDataSource } from 'ng-table-virtual-scroll';
 import { Location } from '../models/location';
 import * as _ from "lodash";
@@ -13,11 +13,10 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ProxyLoggerComponent implements OnInit {
 
-  //@Input() locations
-
-  displayedColumns = ['date','mac', 'x', 'y'];
+  displayedColumns = ['detail','date','mac', 'x', 'y'];
   dataSource = new TableVirtualScrollDataSource();
-
+  
+  @Output() locationDetail: EventEmitter<Location> = new EventEmitter<Location>()
 
   @Input() set locations(locations: Location[]) {
     console.log(location)
@@ -34,6 +33,11 @@ export class ProxyLoggerComponent implements OnInit {
   }
   setDataSource(locations: Location[]) {
     this.dataSource = new TableVirtualScrollDataSource(locations)
+  }
+
+  showChart(location:Location){
+    console.log(location)
+    this.locationDetail.emit(location)
   }
 
 }

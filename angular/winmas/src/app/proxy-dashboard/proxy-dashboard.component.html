@@ -1,5 +1,5 @@
 <div class="grid-container">
-    <mat-grid-list cols="4" rowHeight="350px">
+    <mat-grid-list cols="6" rowHeight="350px">
         <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
             <mat-card *ngIf="card.visibility" class="dashboard-card">
                 <mat-card-header>
@@ -12,10 +12,10 @@
                   </mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="dashboard-card-content">
-                  <!--<div>Card Content Here</div>-->
-                  <app-proxy-config (proxyConf)="setProxyConf($event)" (stopEvent)="stopProxy()" [current_status] = "current_status.status" *ngIf="card.chart"></app-proxy-config>
+                  <app-proxy-config (proxyConf)="setProxyConf($event)" (stopEvent)="stopProxy()" [current_status] = "current_status.status" *ngIf="card.config"></app-proxy-config>
                   <app-proxy-status [current_status] = "current_status.status" *ngIf="card.status"></app-proxy-status>
-                  <app-proxy-logger [locations] = "new_locations" *ngIf="card.logger"></app-proxy-logger>
+                  <app-proxy-logger [locations] = "new_locations" (locationDetail)="getLocationDetail($event)" *ngIf="card.logger"></app-proxy-logger>
+                  <app-proxy-chart [esps] = "esps" [location] = "locationChart" *ngIf="card.chart"></app-proxy-chart>
                 </mat-card-content>
               </mat-card>
         </mat-grid-tile>
