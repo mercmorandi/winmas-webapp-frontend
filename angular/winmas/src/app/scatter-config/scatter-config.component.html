@@ -1,31 +1,3 @@
-<!-- <form [formGroup]="configScatterForm" novalidate (ngSubmit)="onSubmit()">
-
-      <div class="row">
-        <div class="col">
-          <div>
-            <mat-form-field>
-              <input (dateInput)="setDate($event.value, 'start_date')" matInput [ngxMatDatetimePicker]="start_picker" placeholder="Choose Start Date">
-              <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
-              <ngx-mat-datetime-picker #start_picker >
-              </ngx-mat-datetime-picker>
-           </mat-form-field>
-        </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div>
-            <mat-form-field>
-              <input (dateInput)="setDate($event.value, 'end_date')" matInput [ngxMatDatetimePicker]="end_picker" placeholder="Choose End Date">
-              <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
-              <ngx-mat-datetime-picker #end_picker >
-              </ngx-mat-datetime-picker>
-           </mat-form-field>
-        </div>
-        </div>
-      </div>
-      <button mat-raised-button color="primary" type="submit" >Submit</button>
-</form> -->
 <form [formGroup]="configScatterForm" novalidate (ngSubmit)="onSubmit()">
 <div class = 'form-container'>
         <mat-form-field class="mr24 ml24">

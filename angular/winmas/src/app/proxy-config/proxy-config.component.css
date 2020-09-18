@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext");
+
+
+.form-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+
+.button-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

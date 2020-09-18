@@ -1,35 +1,24 @@
-<div *ngIf="current_status == 'off' ">
-    <mat-form-field appearance="fill">
-        <mat-label>Host ip</mat-label>
-        <input matInput name="ip" [formControl]='ip' required>
-
-    </mat-form-field>
-    <div *ngIf="ip.invalid && (ip.dirty || ip.touched)" class="alert alert-danger">
-
-        <div *ngIf="ip.errors.required">
-            Host ip is required.
-        </div>
-        <div *ngIf="ip.errors.pattern">
-            Value must be a valid IP.
-        </div>
-
+<div class="form-container" *ngIf="current_status == 'on' ; else offBlock">
+    <button class="button-box mr24 ml24" mat-raised-button color="primary" (click)="onSubmitStop()">
+        <div class="button-box">
+        <mat-icon>stop</mat-icon>
+        STOP
     </div>
-    <br>
-    <mat-form-field appearance="fill">
-        <mat-label>Host port</mat-label>
-        <input type="number" matInput name="port" [formControl]='port' required>
-    </mat-form-field>
-    <div *ngIf="port.invalid && (port.dirty || port.touched)" class="alert alert-danger">
+    </button>
 
-        <div *ngIf="port.errors.required">
-            Host port is required.
-        </div>
 
-    </div>
-    <br>
-    <button mat-raised-button color="primary" type="submit" (click)="onSubmitStart()">Start Proxy</button>
+    
 </div>
 
-<div *ngIf="current_status == 'on' ">
-    <button mat-raised-button color="primary" type="submit" (click)="onSubmitStop()">Stop Proxy</button>
-</div>
+<ng-template #offBlock>
+    <div class="form-container">
+        <button class="mr24 ml24" mat-raised-button color="primary" type="submit" (click)="onSubmitStart()">
+            <div class="button-box">
+            <mat-icon>play_arrow</mat-icon>
+            START
+        </div>
+        </button>
+
+        
+    </div>
+</ng-template>

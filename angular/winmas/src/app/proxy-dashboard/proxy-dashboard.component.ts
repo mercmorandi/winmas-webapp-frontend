@@ -14,10 +14,8 @@ import { ScatterService } from '../scatter.service';
 export class ProxyDashboardComponent implements OnInit, OnDestroy {
 
   cards = [
-    { title: 'Proxy config', cols: 5, rows: 1, config: true, visibility: true },
-    { title: 'Proxy Status', cols: 1, rows: 1, status: true, visibility: true},
-    { title: 'Proxy Logger', cols: 3, rows: 2, logger: true, visibility: false},
-    { title: 'Proxy Chart', cols: 3, rows: 2, chart: true, visibility: false},
+    { title: 'Proxy Logger', cols: 3, rows: 2, logger: true, visibility: true},
+    { title: 'Proxy Chart', cols: 3, rows: 2, chart: true, visibility: true},
   ]
 
   messages = []
@@ -32,21 +30,15 @@ export class ProxyDashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // this.location_subscription = this.proxyService.getLocations().subscribe( locations => {
-    //   console.log("location ricevuto: ", locations)
-    //   //this.locations.push(location)
-    //   this.new_locations = Array.from(this.locations)
-    // })
-
     this.proxyService.getCurrentStatus().subscribe( (status:ProxyStatus) => {
       console.log("new status: ", status)
       this.current_status=status
       if (status.status == "on"){
-        this.cards[2].visibility=true
-        this.cards[3].visibility=true
+        //this.cards[0].visibility=true
+        //this.cards[1].visibility=true
       }else{
-        this.cards[2].visibility=false
-        this.cards[3].visibility=false
+        //this.cards[0].visibility=false
+        //this.cards[1].visibility=false
       }
     })
 
@@ -77,20 +69,19 @@ export class ProxyDashboardComponent implements OnInit, OnDestroy {
     
   }
 
-  public setProxyConf(proxyConf: ProxyConfig){
-    console.log("ricevuto: ",proxyConf)
-
-    this.proxyService.startProxy(proxyConf).subscribe( () =>{
+  public setProxyConf(){
+    
+    this.proxyService.startProxy().subscribe( () =>{
       console.log("proxy acceso")
-      this.cards[2].visibility = true
-      this.cards[3].visibility = true
+      //this.cards[0].visibility = true
+      //this.cards[1].visibility = true
     })
   }
 
   public stopProxy(){
     console.log("stopping proxy")
-    this.cards[2].visibility = false
-    this.cards[3].visibility = false
+    //this.cards[0].visibility = false
+    //this.cards[1].visibility = false
     this.proxyService.stopProxy().subscribe(() => {
       console.log("proxy spento")
       

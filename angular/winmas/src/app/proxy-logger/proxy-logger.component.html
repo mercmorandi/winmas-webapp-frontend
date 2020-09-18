@@ -6,12 +6,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <!-- detail Column -->
     <ng-container matColumnDef="detail">
       <th mat-header-cell *matHeaderCellDef>Detail</th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button (click) = "showChart(element)">
-          <mat-icon> visibility </mat-icon>
+          <mat-icon *ngIf="element.mac == currentMac && element.insertion_date == currentDate ">visibility</mat-icon>
+          <mat-icon *ngIf="element.mac != currentMac || element.insertion_date != currentDate ">visibility_off</mat-icon>
         </button>
       </td>
     </ng-container>

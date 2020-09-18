@@ -1,23 +1,27 @@
 <div class="grid-container">
-    <mat-grid-list cols="6" rowHeight="350px">
-        <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
-            <mat-card *ngIf="card.visibility" class="dashboard-card">
-                <mat-card-header>
-                  <mat-card-title>
-                    {{card.title}}
-                    <mat-menu #menu="matMenu" xPosition="before">
-                      <button mat-menu-item>Expand</button>
-                      <button mat-menu-item>Remove</button>
-                    </mat-menu>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <app-proxy-config (proxyConf)="setProxyConf($event)" (stopEvent)="stopProxy()" [current_status] = "current_status.status" *ngIf="card.config"></app-proxy-config>
-                  <app-proxy-status [current_status] = "current_status.status" *ngIf="card.status"></app-proxy-status>
-                  <app-proxy-logger [locations] = "new_locations" (locationDetail)="getLocationDetail($event)" *ngIf="card.logger"></app-proxy-logger>
-                  <app-proxy-chart [esps] = "esps" [location] = "locationChart" *ngIf="card.chart"></app-proxy-chart>
-                </mat-card-content>
-              </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <app-proxy-config (proxyConf)="setProxyConf()" (stopEvent)="stopProxy()" [current_status]="current_status.status"></app-proxy-config>
+  <mat-grid-list cols="6" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card *ngIf="card.visibility" class="dashboard-card">
+        <mat-card-header class="just-content">
+          <div *ngIf="card.title == 'Proxy Logger'" class="mr24">
+            <div *ngIf="current_status.status == 'on' " class="led-green"></div>
+            <div *ngIf="current_status.status == 'off' " class="led-red"></div>
+          </div>
+          <mat-card-title>
+            {{card.title}}
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-proxy-logger [current_status]="current_status" [locations]="new_locations" (locationDetail)="getLocationDetail($event)"
+            *ngIf="card.logger"></app-proxy-logger>
+          <app-proxy-chart [esps]="esps" [location]="locationChart" *ngIf="card.chart"></app-proxy-chart>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

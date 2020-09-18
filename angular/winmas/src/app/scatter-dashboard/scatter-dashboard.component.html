@@ -15,8 +15,6 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <!--<div>Card Content Here</div>-->
-          <!-- <app-scatter-config (dates)="getDates($event)"*ngIf="card.config"></app-scatter-config> -->
           <app-scatter-chart [esps]="esps" [devicesDates]="devicesDates" (devicesTable)="getDevicesTable($event)"
             *ngIf="card.chart"></app-scatter-chart>
           <app-scatter-table *ngIf="card.table" [devices]="devices" (deviceDetail)="getDeviceDetails($event)">

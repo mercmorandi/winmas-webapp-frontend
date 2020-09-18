@@ -48,7 +48,6 @@ import { HistogramDashboardComponent } from './histogram-dashboard/histogram-das
 import { HistogramConfigComponent } from './histogram-config/histogram-config.component';
 import { ProxyDashboardComponent } from './proxy-dashboard/proxy-dashboard.component';
 import { ProxyConfigComponent } from './proxy-config/proxy-config.component';
-import { ProxyStatusComponent } from './proxy-status/proxy-status.component';
 import { ProxyLoggerComponent } from './proxy-logger/proxy-logger.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
@@ -79,7 +78,6 @@ const appRoutes: Routes = [
     HistogramConfigComponent,
     ProxyDashboardComponent,
     ProxyConfigComponent,
-    ProxyStatusComponent,
     ProxyLoggerComponent,
     ProxyChartComponent
   ],

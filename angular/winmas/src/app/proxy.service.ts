@@ -21,13 +21,10 @@ export class ProxyService {
     this.socket = io('http://localhost:5000');
   }
 
-  public startProxy(proxyConf) {
-    let params = new HttpParams();
-    params = params.append('host', proxyConf.host);
-    params = params.append('port', proxyConf.port);
+  public startProxy() {
+   
     return this.httpClient
-      .get<string>(`${environment.apiUrl}start_proxy/`,
-        { params: params }
+      .get<string>(`${environment.apiUrl}start_proxy/`
       )
       .pipe(
         //tap((data)=>console.log(data)),),
