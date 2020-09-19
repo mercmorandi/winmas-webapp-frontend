@@ -20,4 +20,12 @@
     width: 100%;
   }
 
+  .active {  
+    background-color:#48da24 !important;  
+    color: white;  
+  }
+
+  .non-active{
+    
+  }
   
