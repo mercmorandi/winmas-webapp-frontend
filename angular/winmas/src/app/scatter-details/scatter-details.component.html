@@ -16,12 +16,14 @@
         <th mat-sort-header="date">Date</th>
         <th>X</th>
         <th>Y</th>
+        <th>ssid</th>
       </tr>
 
       <tr *ngFor="let location of locations_list">
         <td>{{location.date}}</td>
         <td>{{location.x}}</td>
         <td>{{location.y}}</td>
+        <td>{{ location.ssid }}</td>
       </tr>
     </table>
   </mat-tab>

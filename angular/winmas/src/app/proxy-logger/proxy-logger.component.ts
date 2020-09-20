@@ -25,7 +25,7 @@ export class ProxyLoggerComponent implements OnInit {
     console.log(location)
     _.forEach(locations, location => {
       let new_date = new Date(location.insertion_date)
-      location.insertion_date = new_date.toString()
+      location.insertion_date = new_date.toLocaleString()
     })
     this.setDataSource(locations)
   }
