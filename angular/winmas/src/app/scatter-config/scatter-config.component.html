@@ -6,8 +6,8 @@
           <ngx-mat-datetime-picker #start_picker >
           </ngx-mat-datetime-picker>
        </mat-form-field>
-   
-  
+
+
         <mat-form-field class="mr24 ">
           <input (dateInput)="setDate($event.value, 'end_date')" matInput [ngxMatDatetimePicker]="end_picker" placeholder="Choose End Date">
           <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
@@ -15,7 +15,7 @@
           </ngx-mat-datetime-picker>
        </mat-form-field>
        <button mat-raised-button color="primary" type="submit" >Submit</button>
-      </div> 
-  
+      </div>
+
 
 </form>

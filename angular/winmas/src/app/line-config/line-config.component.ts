@@ -12,17 +12,31 @@ import { LineService } from '../line.service';
   styleUrls: ['./line-config.component.css']
 })
 export class LineConfigComponent {
+  configLineForm = this.fb.group({
+    startDate: [new Date(), Validators.required],
+  });
+  private start_date: number;
+
   @Output() date = new EventEmitter<number>();
 
-  constructor(private message: MessageService) {}
+  constructor(private fb: FormBuilder, private message: MessageService) {}
 
   ngOnInit() {
     //this.message.success(this.date + this.dateControl.value);
   }
 
-  setDate(selectedDate: Date) {
+  onSubmit() {
+    this.message.success('Thanks!');
+    this.date.emit(this.start_date);
+  }
+
+  setDate(selectedDate: Date, type) {
     let date = Math.trunc(selectedDate.getTime()/1000);
     console.log("send:", date, selectedDate)
-    this.date.emit(date);
+    if (type == 'start_date') {
+      let date = Math.trunc(selectedDate.getTime()/1000);
+      this.start_date = date;
+      this.date.emit(date);
+    }
   }
 }

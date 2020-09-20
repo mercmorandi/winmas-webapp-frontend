@@ -1,12 +1,11 @@
-<div class="row">
-  <div class="col">
-    <div>
-      <mat-form-field>
-        <input (dateInput)="setDate($event.value)" matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #picker >
-        </ngx-mat-datetime-picker>
-     </mat-form-field>
-    </div>
+<form [formGroup]="configLineForm" novalidate (ngSubmit)="onSubmit()">
+  <div class = 'form-container'>
+          <mat-form-field class="mr24 ml24">
+            <input (dateInput)="setDate($event.value, 'start_date')" matInput [ngxMatDatetimePicker]="start_picker" placeholder="Choose Start Date">
+            <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #start_picker >
+            </ngx-mat-datetime-picker>
+         </mat-form-field>
+         <!-- <button mat-raised-button color="primary" type="submit" >Submit</button> -->
   </div>
-</div>
+</form>

@@ -8,6 +8,7 @@ import { LineService } from '../line.service';
 import { MessageService } from '../message.service';
 import { tap, takeUntil } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
@@ -15,7 +16,12 @@ import { tap, takeUntil } from 'rxjs/operators';
 })
 export class LineChartComponent implements OnChanges, OnDestroy {
   @Input() stats$: Observable<lineStatVM[]>;
+  // stats: lineStatVM[];
+  stats: Map<string,lineStatVM> = new Map<string, lineStatVM>();
+  reset: boolean = true;
+  reorder: boolean = true;
   private readonly onDestroy = new Subject<void>();
+
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Number of Devices', yAxisID: 'y-axis-0' }
   ];
@@ -89,12 +95,33 @@ export class LineChartComponent implements OnChanges, OnDestroy {
   }
 
   public pushOne(stats: lineStatVM[]) {
+    if (this.reset){
+      this.stats = new Map<string, lineStatVM>();
+    }
+    //init
+    this.lineChartLabels = []
+    this.lineChartData.forEach((x, i) => {
+      x.data = [];
+    });
+
     let data_labels: Label[] = this.lineChartLabels as Label[];
 
+    // this.stats = stats;
+    stats.forEach((stat: lineStatVM) => {
+      if(!this.stats[stat.minute]){
+        this.stats.set(stat.minute,stat);
+      }
+    })
+    if (this.reorder) {
+      this.stats = new Map([...this.stats.entries()].sort());
+      console.log("STAT MAP", this.stats);
+
+    }
+    //insert
     this.lineChartData.forEach((x, i) => {
       console.log(x, i);
       let data_values: number[] = x.data as number[];
-      stats.forEach((value:lineStatVM)=>{
+      this.stats.forEach((value:lineStatVM)=>{
         //console.log(value);
         data_values.push(value.nDevices);
         data_labels.push(value.minute.toString());
@@ -102,26 +129,8 @@ export class LineChartComponent implements OnChanges, OnDestroy {
       //x.data = data_values;
       console.log(x.data);
     });
-    this.lineChartLabels.push();
+
   }
-
-  // public pushOne() {
-  //   let data_labels: Label[] = this.lineChartLabels as Label[];
-
-  //   this.lineChartData.forEach((x, i) => {
-  //     console.log(x, i);
-  //     let data_values: number[] = x.data as number[];
-  //     this.stats.forEach((value:lineStatVM)=>{
-  //       //console.log(value);
-  //       data_values.push(value.nDevices);
-  //       data_labels.push(value.minute.toString());
-  //     });
-  //     //x.data = data_values;
-  //     console.log(x.data);
-  //   });
-  //   this.lineChartLabels.push();
-  // }
-
 
 
   public randomize(): void {
@@ -131,6 +140,22 @@ export class LineChartComponent implements OnChanges, OnDestroy {
     //   }
     // }
     // this.chart.update();
+  }
+
+  resetChange() {
+    if(this.reset)
+      this.reset=false;
+    else{
+      this.reset=true;
+    }
+  }
+
+  reorderChange() {
+    if(this.reorder)
+      this.reorder=false;
+    else{
+      this.reorder=true;
+    }
   }
 
   private generateNumber(i: number) {
