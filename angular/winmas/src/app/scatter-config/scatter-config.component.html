@@ -9,7 +9,7 @@
 
 
         <mat-form-field class="mr24 ">
-          <input (dateInput)="setDate($event.value, 'end_date')" matInput [ngxMatDatetimePicker]="end_picker" placeholder="Choose End Date">
+          <input [disabled]="disabled" (dateInput)="setDate($event.value, 'end_date')" matInput [min] = "min_date" [ngxMatDatetimePicker]="end_picker" placeholder="Choose End Date">
           <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
           <ngx-mat-datetime-picker #end_picker >
           </ngx-mat-datetime-picker>

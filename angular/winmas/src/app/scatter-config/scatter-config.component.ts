@@ -21,6 +21,9 @@ export class ScatterConfigComponent {
   private start_date: number;
   private end_date: number;
 
+  disabled:boolean = true
+  min_date:Date = new Date()
+
   @Output() dates: EventEmitter<Dates> = new EventEmitter<Dates>()
 
   constructor(private fb: FormBuilder, private message: MessageService) { }
@@ -36,6 +39,8 @@ export class ScatterConfigComponent {
 
   setDate(selectedDate: Date, type) {
     if (type == 'start_date') {
+      this.disabled = false
+      this.min_date = selectedDate
       this.start_date = Math.trunc(selectedDate.getTime() / 1000);
       //this.message.success("Selected start_date :\n" + new Date(this.start_date * 1000) + "\n(" + this.start_date + ")");
     }else{
