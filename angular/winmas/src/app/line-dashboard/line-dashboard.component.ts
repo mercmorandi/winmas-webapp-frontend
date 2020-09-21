@@ -45,7 +45,7 @@ export class LineDashboardComponent implements OnInit{
 
   ngOnInit() {
     // initialize page
-    this.lineStats$ = this.lineService.getStats(1593624720); //default date mercoledì 1 luglio 2020 19:32:00 GMT+02:00 DST
+    //this.lineStats$ = this.lineService.getStats(1593624720); //default date mercoledì 1 luglio 2020 19:32:00 GMT+02:00 DST
   }
 
   public setDate(date :number) {
