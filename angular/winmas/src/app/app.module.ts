@@ -52,6 +52,7 @@ import { ProxyLoggerComponent } from './proxy-logger/proxy-logger.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ProxyChartComponent } from './proxy-chart/proxy-chart.component';
+import { HistogramDetailsComponent } from './histogram-details/histogram-details.component';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -79,7 +80,8 @@ const appRoutes: Routes = [
     ProxyDashboardComponent,
     ProxyConfigComponent,
     ProxyLoggerComponent,
-    ProxyChartComponent
+    ProxyChartComponent,
+    HistogramDetailsComponent
   ],
   imports: [
     BrowserModule,

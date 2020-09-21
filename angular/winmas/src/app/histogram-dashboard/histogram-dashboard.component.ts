@@ -19,16 +19,16 @@ export class HistogramDashboardComponent implements OnInit {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Position Monitoring', cols: 2, rows: 2, chart: true },
+          { title: 'Most frequent devices', cols: 2, rows: 2, chart: true },
           { title: 'Table Positions', cols: 2, rows: 2, table: true },
-          { title: 'Position Configurations', cols: 2, rows: 1, config: true },
+          { title: 'Date selection', cols: 2, rows: 1, config: true },
           { title: 'Device Details', cols: 2, rows: 2, details: false },
         ];
       }
 
       return [
-        { title: 'Position Monitoring', cols: 2, rows: 2, chart: true, visibility: true },
-        { title: 'Position Configurations', cols: 1, rows: 1, config: true, visibility: true},
+        { title: 'Most frequent devices', cols: 2, rows: 2, chart: true, visibility: true },
+        { title: 'Date selection', cols: 1, rows: 1, config: true, visibility: true},
         { title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
         { title: 'Device Details', cols: 2, rows: 2, details: false, visibility: false },
       ];
@@ -39,8 +39,8 @@ export class HistogramDashboardComponent implements OnInit {
   devicesDates: DeviceDates
   devices: Device[] = []
   cards2 = [
-    { title: 'Position Monitoring', cols: 2, rows: 2, chart: true, visibility: true },
-    { title: 'Position Configurations', cols: 1, rows: 1, config: true, visibility: true},
+    { title: 'Most frequent devices', cols: 2, rows: 2, chart: true, visibility: true },
+    { title: 'Date selection', cols: 1, rows: 1, config: true, visibility: true},
     { title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
     { title: 'Device Details', cols: 2, rows: 2, details: true, visibility: false },
   ]

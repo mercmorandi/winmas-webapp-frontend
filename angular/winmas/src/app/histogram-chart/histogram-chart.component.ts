@@ -7,6 +7,7 @@ import { EspInfo } from '../models/esp-info';
 import { Device, DevicePoint, DeviceBar } from '../models/device';
 import { Dates } from '../models/dates';
 import { DeviceDates } from '../models/device-dates';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-histogram-chart',
@@ -36,11 +37,10 @@ export class HistogramChartComponent{
     tooltips: {
       callbacks: {
           label: function(tooltipItem, data) {
-              var row = data.datasets[tooltipItem.datasetIndex]
               var label = []
-              label.push('name: '+row.label || '' );
-              console.log('tooltip: ',tooltipItem)
-              label.push('MACs: '+tooltipItem.xLabel)
+              //label.push('name: '+row.label || '' );
+              //console.log('tooltip: ',tooltipItem)
+              //label.push('MACs: '+tooltipItem.xLabel)
               label.push('Occurrences: '+tooltipItem.yLabel)
               var test = []
               test.push(label)
@@ -64,12 +64,15 @@ export class HistogramChartComponent{
     legend: {
       position: 'bottom',
       fullWidth: true,
+      display: false
     },
 
   };
 
   public barChartLabels: Label[] = []
-  public barChartData: ChartDataSets[] = []
+  public barChartData: ChartDataSets[] = [{
+    data: []
+  }]
   public barChartType: ChartType = 'bar';
 
   constructor() { }
@@ -98,31 +101,44 @@ export class HistogramChartComponent{
     })
 
     let devices_point_list: DevicePoint[] = []
-    console.log(this.devices_points)
     for (let k in this.devices_points) {
-      //let frequency = (this.devices_points[k]).length
-      //console.log("freauqenza: ",frequency)
-      //console.log('sono qua')
-      //console.log(this.devices_points[k]?.length)
+      let frequency = (this.devices_points[k]).length
+      this.barChartData[0].data.push(frequency)
       this.barChartLabels.push(k)
-      //this.barChartData.push(frequency)
+      
       devices_point_list.push(this.devices_points[k])
     }
+    this.sortData()
     devices_point_list = _.flatten(devices_point_list)
-
 
     ////gruppo per timestamp
     this.devices_points = _.groupBy(devices_point_list, (devicePoint) => {
       return Math.floor(parseInt(devicePoint.device.insertion_date) / 1000)
     })
 
-    _.forEach(this.devices_points, (value, key) => {
-      console.log(new Date(parseInt(key) * 1000))
-    })
+  }
 
-    //this.drawData()
-
-
+  public sortData(){
+    var dataArray = [];
+    this.barChartData[0].data.forEach(element => {
+      dataArray.push(element);
+    });
+    
+    // Get the index after sorted.
+    let dataIndexes = dataArray.map((d, i) => i);
+    dataIndexes.sort((a, b) => {
+      return dataArray[b] - dataArray[a];
+    });
+    // create after sorted datasets.
+    var tempDatasets = [];
+    var tempLabels = [];
+    dataIndexes.forEach(element => {
+      tempDatasets.push(this.barChartData[0].data[element]);
+      tempLabels.push(this.barChartLabels[element]);
+    });
+    // apply it
+    this.barChartLabels = tempLabels;
+    this.barChartData[0].data = tempDatasets;
   }
 
   public drawData() {

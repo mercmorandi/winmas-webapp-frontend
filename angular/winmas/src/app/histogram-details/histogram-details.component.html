@@ -1,0 +1,28 @@
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Info">
+      <mat-list>
+        <mat-list-item>Id: {{ deviceInfo.id }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>MAC: {{ deviceInfo.mac }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Occurences: {{ locations_list.length }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Last update: {{ deviceInfo.last_update }}</mat-list-item>
+      </mat-list>
+    </mat-tab>
+    <mat-tab label="Location">
+      <table matSort (matSortChange)="sortData($event)">
+        <tr>
+          <th mat-sort-header="date">Date</th>
+          <th>X</th>
+          <th>Y</th>
+        </tr>
+  
+        <tr *ngFor="let location of locations_list">
+          <td>{{location.date}}</td>
+          <td>{{location.x}}</td>
+          <td>{{location.y}}</td>
+        </tr>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
