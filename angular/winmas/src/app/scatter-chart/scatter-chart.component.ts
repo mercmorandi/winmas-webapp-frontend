@@ -69,14 +69,16 @@ export class ScatterChartComponent {
         ticks: {
           suggestedMin: -15,
           suggestedMax: 15,
-          stepSize: 0.5
+          stepSize: 0.5,
+          fontColor: '#FFF'
         }
       }],
       xAxes: [{
         ticks: {
           suggestedMin: -15,
           suggestedMax: 15,
-          stepSize: 0.5
+          stepSize: 0.5,
+          fontColor: '#FFF'
         }
       }]
     },

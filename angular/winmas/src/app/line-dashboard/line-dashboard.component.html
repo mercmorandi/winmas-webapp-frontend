@@ -1,4 +1,7 @@
 <div class="grid-container">
+  <div>
+    <app-line-config (date)="setDate($event)"></app-line-config>
+  </div>
   <mat-grid-list cols="3" rowHeight="350px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
@@ -15,8 +18,8 @@
           <!--<div>Card Content Here</div>-->
           <app-line-chart [stats$]="lineStats$" *ngIf="card.chart"></app-line-chart>
           <!-- <app-line-chart [date]="date" *ngIf="card.chart"></app-line-chart> -->
-          <app-line-config (date)="setDate($event)" *ngIf="card.config"></app-line-config>
-          <app-line-table [stats]="lineStats$ | async" *ngIf="card.table"></app-line-table>
+          <!-- <app-line-config (date)="setDate($event)" *ngIf="card.config"></app-line-config> -->
+          <!-- <app-line-table [stats]="lineStats$ | async" *ngIf="card.table"></app-line-table> -->
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

@@ -23,15 +23,15 @@ export class LineDashboardComponent implements OnInit{
       if (matches) {
         return [
           { title: 'Long-Term Statistics', cols: 2, rows: 2, chart: true },
-          { title: 'Statistics Configurations', cols: 2, rows: 2, config: true },
-          { title: 'Table Statistics', cols: 2, rows: 2, table: true },
+          //{ title: 'Statistics Configurations', cols: 2, rows: 2, config: true },
+          //{ title: 'Table Statistics', cols: 2, rows: 2, table: true },
         ];
       }
 
       return [
-        { title: 'Long-Term Statistics', cols: 2, rows: 2, chart: true },
-        { title: 'Statistics Configurations', cols: 1, rows: 1, config: true },
-        { title: 'Table Statistics', cols: 1, rows: 2, table: true },
+        { title: 'Long-Term Statistics', cols: 3, rows: 3, chart: true },
+        //{ title: 'Statistics Configurations', cols: 1, rows: 1, config: true },
+        //{ title: 'Table Statistics', cols: 1, rows: 2, table: true },
       ];
     })
   );

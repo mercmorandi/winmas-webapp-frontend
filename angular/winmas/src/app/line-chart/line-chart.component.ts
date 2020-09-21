@@ -49,16 +49,23 @@ export class LineChartComponent implements OnChanges, OnDestroy {
         ticks: {
           suggestedMin: -15,
           suggestedMax: 15,
-          stepSize: 0.5
+          stepSize: 0.5,
+          fontColor: '#FFF'
         }
       }],
       xAxes: [{
         ticks: {
           suggestedMin: -15,
           suggestedMax: 15,
-          stepSize: 0.5
+          stepSize: 0.5,
+          fontColor: '#FFF'
         }
       }]
+    },
+    legend: {
+      labels:{
+        fontColor:'#FFF',
+      }
     },
     annotation: {
     }
@@ -123,8 +130,9 @@ export class LineChartComponent implements OnChanges, OnDestroy {
       let data_values: number[] = x.data as number[];
       this.stats.forEach((value:lineStatVM)=>{
         //console.log(value);
+        let new_date = new Date(value.minute)
         data_values.push(value.nDevices);
-        data_labels.push(value.minute.toString());
+        data_labels.push(new_date.toLocaleString());
       });
       //x.data = data_values;
       console.log(x.data);
