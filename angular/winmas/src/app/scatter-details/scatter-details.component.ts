@@ -33,7 +33,7 @@ export class ScatterDetailsComponent implements OnInit {
   setDeviceInfo(deviceInfo: DeviceInfo){
     this.deviceInfo2=deviceInfo
     let new_date = new Date(this.deviceInfo2.last_update)
-    this.deviceInfo2.last_update=new_date
+    this.deviceInfo2.last_update=new_date.toLocaleString()
   }
   setLocations(locations: Location[]) {
     this.locations_list = _.uniqBy(locations, (location) => {
@@ -41,9 +41,9 @@ export class ScatterDetailsComponent implements OnInit {
       return date.setSeconds(0)
     })
 
-    _.forEach(this.locations_list, location => {
+    _.forEach(locations, location => {
       let new_date = new Date(location.date)
-      location.date = new_date
+      location.date = new_date.toLocaleString()
     })
   }
 

@@ -16,8 +16,7 @@ export class ProxyLoggerComponent implements OnInit {
   displayedColumns = ['detail','date','mac','ssid', 'x', 'y'];
   dataSource = new TableVirtualScrollDataSource();
 
-  currentMac: String
-  currentDate: String
+  currentElement: any = {}
   
   @Output() locationDetail: EventEmitter<Location> = new EventEmitter<Location>()
   @Input() current_status:any = ''
@@ -39,8 +38,7 @@ export class ProxyLoggerComponent implements OnInit {
   }
 
   showChart(location: Location){
-    this.currentMac = location.mac
-    this.currentDate = location.insertion_date
+    this.currentElement = location
     this.locationDetail.emit(location)
   }
 
