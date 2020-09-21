@@ -2,6 +2,7 @@ export class Location {
     x: number;
     y: number;
     date: Date;
+    ssid: string;
 }
 
 export class DeviceInfo {

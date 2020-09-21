@@ -30,6 +30,10 @@
     <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button> -->
   <!-- </div>
 </div> -->
+<div>
+  <mat-checkbox [checked]="reset" (change)="resetChange()"> Reset Data </mat-checkbox>
+  <mat-checkbox [checked]="reorder" (change)="reorderChange()"> Cronological Order </mat-checkbox>
+</div>
 
 <div *ngIf = "lineChartData.length > 0"style="display: block;">
   <canvas baseChart

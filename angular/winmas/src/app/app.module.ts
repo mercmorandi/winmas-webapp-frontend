@@ -53,6 +53,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ProxyChartComponent } from './proxy-chart/proxy-chart.component';
 import { HistogramDetailsComponent } from './histogram-details/histogram-details.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const appRoutes: Routes = [
   { path: 'scatter-dashboard', component: ScatterDashboardComponent },
@@ -118,6 +119,7 @@ const appRoutes: Routes = [
     MatTabsModule,
     MatDividerModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     ScrollingModule,
     TableVirtualScrollModule
     ],
