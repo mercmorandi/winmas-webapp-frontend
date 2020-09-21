@@ -1,7 +1,10 @@
 <div class="grid-container">
+  <div>
+    <app-histogram-config (dates)="getDates($event)"></app-histogram-config>
+  </div>
     <mat-grid-list cols="3" rowHeight="350px">
-      <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-        <mat-card class="dashboard-card">
+      <mat-grid-tile *ngFor="let card of cards2" [colspan]="card.cols" [rowspan]="card.rows">
+        <mat-card *ngIf="card.visibility" class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
               {{card.title}}
@@ -13,9 +16,8 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <!--<div>Card Content Here</div>-->
-            <app-histogram-chart [devicesDates] = "devicesDates" (devicesTable) = "getDevicesTable($event)" *ngIf="card.chart"></app-histogram-chart>
-            <app-histogram-config (dates)="getDates($event)"*ngIf="card.config"></app-histogram-config>
-            <!--<app-histogram-table  *ngIf="card.table" [devices] = "devices" (deviceDetail) = "getDeviceDetails($event)"></app-histogram-table>-->
+            <app-histogram-chart (deviceDetail) = "getDeviceDetails($event)" [devicesDates] = "devicesDates" (devicesTable) = "getDevicesTable($event)" *ngIf="card.chart"></app-histogram-chart>
+            <!--<app-histogram-config (dates)="getDates($event)"*ngIf="card.config"></app-histogram-config>-->
             <app-histogram-details *ngIf="card.details" [deviceId]="deviceIdDetails" [deviceInfo]="deviceInfo"
             [locations]="deviceInfo.locations"></app-histogram-details>
           </mat-card-content>

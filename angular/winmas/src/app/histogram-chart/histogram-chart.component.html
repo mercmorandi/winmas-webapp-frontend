@@ -3,7 +3,9 @@
       [datasets]="barChartData"
       [options]="barChartOptions"
       [labels]="barChartLabels"
-      [chartType]="barChartType">
+      [chartType]="barChartType"
+      (chartClick)="chartClicked($event)"
+      >     
     </canvas>
 </div>
   

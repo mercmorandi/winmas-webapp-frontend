@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType, ChartPoint } from 'chart.js';
+import { ChartDataSets, ChartOptions, ChartType, ChartPoint, ChartElementsOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { ScatterService } from '../scatter.service';
 import * as _ from "lodash";
@@ -16,12 +16,19 @@ import { element } from 'protractor';
 })
 export class HistogramChartComponent{
 
+  deviceList: Device[] = []
+
+  currentId: number;
+  @Output() deviceDetail: EventEmitter<number> = new EventEmitter<number>()
+
   @Input() set devicesDates(devicesDates: DeviceDates) {
     if (devicesDates) {
       this.start_date = devicesDates.start_date
       this.end_date = devicesDates.end_date
       this.current_date = this.start_date
+      this.deviceList = devicesDates.devices
       this.setDevicesChart(devicesDates.devices)
+      
     }
   }
 
@@ -52,12 +59,14 @@ export class HistogramChartComponent{
     scales: {
       yAxes: [{
         ticks: {
-          stepSize: 2
+          stepSize: 2,
+          fontColor: '#FFF'
         }
       }],
       xAxes: [{
         ticks: {
-          stepSize: 2
+          stepSize: 2,
+          fontColor: '#FFF'
         }
       }]
     },
@@ -161,12 +170,23 @@ export class HistogramChartComponent{
     //random color will be freshly served
   }
   // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+  public chartClicked({ event, active }: { event: MouseEvent, active: ChartElementsOptions }): void {
+    console.log(active);
+    var index = active[0]._index;
+    var mac = this.barChartLabels[index]
+    console.log(this.deviceList)
+
+    var device = this.deviceList.filter(value => value.mac == mac)
+    this.goDetails(device[0].device_id)
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
+  }
+
+  goDetails(id:number){
+    this.currentId = id
+    this.deviceDetail.emit(id)
   }
 
 }

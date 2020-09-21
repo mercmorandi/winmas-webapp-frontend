@@ -20,16 +20,16 @@ export class HistogramDashboardComponent implements OnInit {
       if (matches) {
         return [
           { title: 'Most frequent devices', cols: 2, rows: 2, chart: true },
-          { title: 'Table Positions', cols: 2, rows: 2, table: true },
-          { title: 'Date selection', cols: 2, rows: 1, config: true },
+          //{ title: 'Table Positions', cols: 2, rows: 2, table: true },
+          //{ title: 'Date selection', cols: 2, rows: 1, config: true },
           { title: 'Device Details', cols: 2, rows: 2, details: false },
         ];
       }
 
       return [
-        { title: 'Most frequent devices', cols: 2, rows: 2, chart: true, visibility: true },
-        { title: 'Date selection', cols: 1, rows: 1, config: true, visibility: true},
-        { title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
+        { title: 'Most frequent devices', cols: 3, rows: 3, chart: true, visibility: true },
+        //{ title: 'Date selection', cols: 1, rows: 1, config: true, visibility: true},
+        //{ title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
         { title: 'Device Details', cols: 2, rows: 2, details: false, visibility: false },
       ];
     })
@@ -39,9 +39,9 @@ export class HistogramDashboardComponent implements OnInit {
   devicesDates: DeviceDates
   devices: Device[] = []
   cards2 = [
-    { title: 'Most frequent devices', cols: 2, rows: 2, chart: true, visibility: true },
-    { title: 'Date selection', cols: 1, rows: 1, config: true, visibility: true},
-    { title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
+    { title: 'Most frequent devices', cols: 3, rows: 3, chart: true, visibility: true },
+    //{ title: 'Date selection', cols: 1, rows: 1, config: true, visibility: true},
+    //{ title: 'Table Positions', cols: 1, rows: 2, table: true, visibility: false },
     { title: 'Device Details', cols: 2, rows: 2, details: true, visibility: false },
   ]
   deviceIdDetails: number
@@ -64,8 +64,7 @@ export class HistogramDashboardComponent implements OnInit {
       console.log(devicesDates)
     })
     this.deviceInfo = new DeviceInfo()
-    this.cards2[3].visibility = false
-    this.cards2[2].visibility = true
+    this.cards2[1].visibility = true
   }
 
   public getDevicesTable(devices: Device[]){
@@ -80,7 +79,7 @@ export class HistogramDashboardComponent implements OnInit {
       this.deviceInfo = data
       console.log("device info: ", this.deviceInfo)
     })
-    this.cards2[3].visibility = true
+    this.cards2[1].visibility = true
   }
 
 }
