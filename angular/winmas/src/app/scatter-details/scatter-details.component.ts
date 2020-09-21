@@ -11,11 +11,17 @@ import * as _ from "lodash";
 export class ScatterDetailsComponent implements OnInit {
 
   @Input() deviceId: number
-  @Input() deviceInfo: DeviceInfo
+  //@Input() deviceInfo: DeviceInfo
+
+  @Input() set deviceInfo(deviceInfo: DeviceInfo) {
+    this.setDeviceInfo(deviceInfo)
+  }  
+
   @Input() set locations(locations: Location[]) {
     this.setLocations(locations)
   }
 
+  deviceInfo2: DeviceInfo = new DeviceInfo()
   locations_list: Location[]
   constructor() { }
 
@@ -24,10 +30,20 @@ export class ScatterDetailsComponent implements OnInit {
 
   sortedData: Location[];
 
+  setDeviceInfo(deviceInfo: DeviceInfo){
+    this.deviceInfo2=deviceInfo
+    let new_date = new Date(this.deviceInfo2.last_update)
+    this.deviceInfo2.last_update=new_date
+  }
   setLocations(locations: Location[]) {
     this.locations_list = _.uniqBy(locations, (location) => {
       let date = new Date(location.date)
       return date.setSeconds(0)
+    })
+
+    _.forEach(this.locations_list, location => {
+      let new_date = new Date(location.date)
+      location.date = new_date
     })
   }
 

@@ -1,13 +1,13 @@
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Info">
     <mat-list>
-      <mat-list-item>Id: {{ deviceInfo.id }}</mat-list-item>
+      <mat-list-item>Id: {{ deviceInfo2.id }}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>MAC: {{ deviceInfo.mac }}</mat-list-item>
+      <mat-list-item>MAC: {{ deviceInfo2.mac }}</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>Occurences: {{ locations_list.length }}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Last update: {{ deviceInfo.last_update }}</mat-list-item>
+      <mat-list-item>Last update: {{ deviceInfo2.last_update.toLocaleString() }}</mat-list-item>
     </mat-list>
   </mat-tab>
   <mat-tab label="Location">
@@ -20,7 +20,7 @@
       </tr>
 
       <tr *ngFor="let location of locations_list">
-        <td>{{location.date}}</td>
+        <td>{{ location.date.toLocaleString() }}</td>
         <td>{{location.x}}</td>
         <td>{{location.y}}</td>
         <td>{{ location.ssid }}</td>
