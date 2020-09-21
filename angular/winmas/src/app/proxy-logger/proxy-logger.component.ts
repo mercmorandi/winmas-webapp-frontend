@@ -13,7 +13,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ProxyLoggerComponent implements OnInit {
 
-  displayedColumns = ['detail','date','mac', 'x', 'y'];
+  displayedColumns = ['detail','date','mac','ssid', 'x', 'y'];
   dataSource = new TableVirtualScrollDataSource();
 
   currentMac: String

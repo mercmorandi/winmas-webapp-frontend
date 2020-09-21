@@ -26,6 +26,11 @@
       <td mat-cell *matCellDef="let element">{{element.mac}}</td>
     </ng-container>
 
+    <ng-container matColumnDef="ssid">
+      <th mat-header-cell *matHeaderCellDef>SSID</th>
+      <td mat-cell *matCellDef="let element">{{element.ssid}}</td>
+    </ng-container>
+
     <ng-container matColumnDef="x">
       <th mat-header-cell *matHeaderCellDef>X</th>
       <td mat-cell *matCellDef="let element">{{element.x}}</td>
