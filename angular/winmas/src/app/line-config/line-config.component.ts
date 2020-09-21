@@ -19,14 +19,13 @@ export class LineConfigComponent {
 
   @Output() date = new EventEmitter<number>();
 
-  constructor(private fb: FormBuilder, private message: MessageService) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     //this.message.success(this.date + this.dateControl.value);
   }
 
   onSubmit() {
-    this.message.success('Thanks!');
     this.date.emit(this.start_date);
   }
 

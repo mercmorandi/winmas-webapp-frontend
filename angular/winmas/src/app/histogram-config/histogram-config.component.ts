@@ -25,10 +25,9 @@ export class HistogramConfigComponent{
 
   @Output() dates: EventEmitter<Dates> = new EventEmitter<Dates>()
 
-  constructor(private fb: FormBuilder, private message: MessageService) { }
+  constructor(private fb: FormBuilder) { }
 
   onSubmit() {
-    this.message.success('Thanks!');
     this.dates.emit({start_date: this.start_date, end_date: this.end_date})
   }
 
